@@ -1,10 +1,37 @@
 <script setup lang="ts">
+import { FetchError } from 'ofetch'
+import type { CheckoutForm, OrderErrorResponse } from '~/types'
+
 const designer = useDesignerStore()
 const checkout = useCheckoutStore()
 const isSubmitting = ref(false)
 
 async function submitOrder() {
-  // TODO
+  checkout.errors = {}
+  checkout.generalError = ''
+  isSubmitting.value = true
+
+  try {
+    await $fetch('/api/order', {
+      method: 'POST',
+      body: {
+        name: checkout.name,
+        address: checkout.address,
+      } satisfies CheckoutForm,
+    })
+    navigateTo('/success')
+  }
+  catch (e: unknown) {
+    // https://github.com/unjs/ofetch?tab=readme-ov-file#%EF%B8%8F-handling-errors
+    if (e instanceof FetchError && e.data) {
+      const data = e.data as OrderErrorResponse
+      checkout.errors = data.errors
+      checkout.generalError = data.message ?? ''
+    }
+  }
+  finally {
+    isSubmitting.value = false
+  }
 }
 </script>
 

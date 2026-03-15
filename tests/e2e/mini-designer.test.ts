@@ -58,5 +58,22 @@ describe('Mini Designer', { timeout: 30_000 }, async () => {
 
       await page.close()
     })
+
+    it('navigates from success to design via "Design another product"', async () => {
+      const page = await createPage(url('/'))
+
+      await page.getByRole('link', { name: 'Go to Checkout' }).click()
+      await page.getByLabel('Name').fill('Erika')
+      await page.getByLabel('Address').fill('Goethestraße 10')
+      await page.getByRole('button', { name: 'Buy' }).click()
+      await expect(page).toHaveURL(/\/success$/)
+
+      await page
+        .getByRole('button', { name: 'Design another product' })
+        .click()
+      await expect(page).toHaveURL(url('/'))
+
+      await page.close()
+    })
   })
 })
