@@ -17,11 +17,10 @@ Your goal is to create a single-page-appication which represent a "Mini-Designer
 ## API Endpoints
 
 | HTTP Method | Endpoint       | File for response definition |
-|-------------|----------------|------------------------------|
-| GET         | `/api/colors`  | `server/api/colors.get.ts`   |   
-| GET         | `/api/motives` | `server/api/motives.get.ts`  |    
+| ----------- | -------------- | ---------------------------- |
+| GET         | `/api/colors`  | `server/api/colors.get.ts`   |
+| GET         | `/api/motives` | `server/api/motives.get.ts`  |
 | POST        | `/api/order`   | `server/api/order.post.ts`   |
-
 
 ## Task
 
@@ -82,12 +81,12 @@ The following are detailed descriptions for the individual views
 ### Checkout Page
 
 - Displays the currently selected design representation
-- When clicked on *`Buy`
+- When clicked on \*`Buy`
   - a request is send to `/api/orders`.
   - The validation is done on the server-side.
     - Error case
       - Invalid form fields get a red border and each field shows its errors underneath.
-      - The general message is displayed above the form 
+      - The general message is displayed above the form
     - Success case
       - The order success page is displayed
   - The `Back` button always returns to the Designer Page. The state is maintained
@@ -101,30 +100,32 @@ The following are detailed descriptions for the individual views
 
 ## Rating criteria
 
-* Focus on code quality and a consistent style
-  * Feel free to install tools like linters
-* Write simple, readable and maintainable code
-  * We attach particular importance to typing
-* Please do not do more than is required in the assignment. This only makes the assessment of the task unnecessarily difficult and quality is more important to us than quantity ;)
-* Use common Vue 3 elements
-  * Composition API with TS and script Setup
-  * components
-  * refs
-  * computed
-  * etc
-* If you have a problem following any of the instructions, and it blocks your progress, please try an alternative and briefly explain why you had to choose a different solution.
-  * In general, the linked documentaries should be sufficient to solve the tasks, from our point of view.
-    * Even if you have only used similar techniques before, we want you to show us how well you can learn from a documetation
-  * Reasonable argumentation is at the core of our way of working, so there is no need to panic :)
+- Focus on code quality and a consistent style
+  - Feel free to install tools like linters
+- Write simple, readable and maintainable code
+  - We attach particular importance to typing
+- Please do not do more than is required in the assignment. This only makes the assessment of the task unnecessarily difficult and quality is more important to us than quantity ;)
+- Use common Vue 3 elements
+  - Composition API with TS and script Setup
+  - components
+  - refs
+  - computed
+  - etc
+- If you have a problem following any of the instructions, and it blocks your progress, please try an alternative and briefly explain why you had to choose a different solution.
+  - In general, the linked documentaries should be sufficient to solve the tasks, from our point of view.
+    - Even if you have only used similar techniques before, we want you to show us how well you can learn from a documetation
+  - Reasonable argumentation is at the core of our way of working, so there is no need to panic :)
 
 The aim of this task is rather to evaluate the mindset, design and quality of the code. As well as your general understanding of reactive programming.
 
 ## Submission
 
 Please create a public repository on Github containing your code.
+
 - Alternatively, another provider such as GitLab, Bitbucket, etc. is also possible.
 
 ## Links / Resourcen
+
 - Vue 3
   - general https://vuejs.org/
   - https://vuejs.org/guide/essentials/reactivity-fundamentals.html
