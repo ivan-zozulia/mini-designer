@@ -1,3 +1,5 @@
 <template>
-  <TShirt />
+  <NuxtLayout>
+    <NuxtPage />
+  </NuxtLayout>
 </template>
