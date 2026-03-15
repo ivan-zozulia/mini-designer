@@ -8,6 +8,7 @@ const designer = useDesignerStore()
       <span>
         {{ formatCurrency(designer.totalPrice) }}
       </span>
+      <NuxtLink to="/checkout">Go to Checkout</NuxtLink>
     </AppHeader>
     <main>
       <div>

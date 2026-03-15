@@ -22,5 +22,20 @@ describe('Mini Designer', { timeout: 30_000 }, async () => {
 
       await page.close()
     })
+
+    it('preserves designer state after navigating back from checkout', async () => {
+      const page = await createPage(url('/'))
+
+      await page.getByTestId('picker-item').nth(1).click()
+      await page.getByRole('link', { name: 'Go to Checkout' }).click()
+      const totalText = await page.getByText('Total:').textContent()
+
+      await page.getByRole('link', { name: 'Back' }).click()
+      await page.getByRole('link', { name: 'Go to Checkout' }).click()
+
+      await expect(page.getByText('Total:')).toHaveText(totalText!)
+
+      await page.close()
+    })
   })
 })
