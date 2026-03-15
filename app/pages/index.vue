@@ -1,11 +1,13 @@
 <script setup lang="ts">
-const totalPrice = ref(10.5)
+const designer = useDesignerStore()
 </script>
 
 <template>
   <div>
     <AppHeader title="Design your Shirt">
-      {{ formatCurrency(totalPrice) }}
+      <span>
+        {{ formatCurrency(designer.totalPrice) }}
+      </span>
     </AppHeader>
     <main>
       <div>
