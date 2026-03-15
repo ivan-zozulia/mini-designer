@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const designer = useDesignerStore()
 
-await callOnce('initial-data', () => designer.fetchData())
+await callOnce(() => designer.fetchData())
 </script>
 
 <template>
