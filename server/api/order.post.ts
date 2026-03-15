@@ -1,3 +1,4 @@
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function validateRequestBody(body: any) {
   const { address, name } = body;
 
