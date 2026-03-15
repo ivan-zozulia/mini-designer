@@ -18,6 +18,6 @@ function generateMotives(count: number) {
   return motives;
 }
 
-export default defineEventHandler((event) => {
+export default defineEventHandler(() => {
   return generateMotives(6);
 });

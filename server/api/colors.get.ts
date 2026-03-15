@@ -18,6 +18,6 @@ function generateColors(count: number) {
   return colors;
 }
 
-export default defineEventHandler((event) => {
+export default defineEventHandler(() => {
   return generateColors(10);
 });
