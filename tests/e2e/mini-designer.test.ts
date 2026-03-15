@@ -78,7 +78,7 @@ describe('Mini Designer', { timeout: 30_000 }, async () => {
   })
 
   describe('Design page', () => {
-    it('shows designer with picker and total price on initial load', async () => {
+    it('shows designer with pickers and total price on initial load', async () => {
       const page = await createPage(url('/'))
 
       await expect(page.getByRole('heading', { level: 1 })).toHaveText('Design your Shirt')
