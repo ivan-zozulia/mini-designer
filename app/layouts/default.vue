@@ -1,8 +1,13 @@
 <template>
-  <div>
+  <div class="min-h-screen flex flex-col bg-white">
     <slot />
-    <footer>
-      <NuxtLink to="/about">About this project</NuxtLink>
+    <footer class="bg-slate-200 px-8 py-5 mt-auto">
+      <NuxtLink
+        to="/about"
+        class="text-sm font-semibold hover:underline"
+      >
+        About this project
+      </NuxtLink>
     </footer>
   </div>
 </template>

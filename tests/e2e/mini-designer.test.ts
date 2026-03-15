@@ -37,5 +37,26 @@ describe('Mini Designer', { timeout: 30_000 }, async () => {
 
       await page.close()
     })
+
+    it('navigates from checkout to about and back, preserving checkout state', async () => {
+      const page = await createPage(url('/'))
+
+      await page.getByRole('link', { name: 'Go to Checkout' }).click()
+      await expect(page).toHaveURL(/\/checkout$/)
+
+      await page.getByLabel('Name').fill('Erika')
+      const totalText = await page.getByText('Total:').textContent()
+
+      await page.getByRole('link', { name: 'About this project' }).click()
+      await expect(page).toHaveURL(/\/about$/)
+
+      await page.getByRole('button', { name: 'Back' }).click()
+      await expect(page).toHaveURL(/\/checkout$/)
+
+      await expect(page.getByLabel('Name')).toHaveValue('Erika')
+      await expect(page.getByText('Total:')).toHaveText(totalText!)
+
+      await page.close()
+    })
   })
 })
