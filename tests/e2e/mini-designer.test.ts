@@ -76,4 +76,15 @@ describe('Mini Designer', { timeout: 30_000 }, async () => {
       await page.close()
     })
   })
+
+  describe('Design page', () => {
+    it('shows designer with picker and total price on initial load', async () => {
+      const page = await createPage(url('/'))
+
+      await expect(page.getByRole('heading', { level: 1 })).toHaveText('Design your Shirt')
+
+      await expect(page.getByTestId('picker-item').first()).toBeVisible()
+      await expect(page.getByText('€')).toBeVisible()
+    })
+  })
 })
