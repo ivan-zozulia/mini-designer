@@ -1,7 +1,7 @@
-import { faker } from "@faker-js/faker";
+import { faker } from '@faker-js/faker'
 
 function generateColors(count: number) {
-  const colors = [];
+  const colors = []
 
   for (let step = 0; step < count; step++) {
     colors.push({
@@ -12,12 +12,12 @@ function generateColors(count: number) {
         max: 50,
         precision: 0.01,
       }),
-    });
+    })
   }
 
-  return colors;
+  return colors
 }
 
 export default defineEventHandler(() => {
-  return generateColors(10);
-});
+  return generateColors(10)
+})

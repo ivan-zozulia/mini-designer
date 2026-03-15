@@ -1,7 +1,7 @@
-import { faker } from "@faker-js/faker";
+import { faker } from '@faker-js/faker'
 
 function generateMotives(count: number) {
-  const motives = [];
+  const motives = []
 
   for (let step = 0; step < count; step++) {
     motives.push({
@@ -12,12 +12,12 @@ function generateMotives(count: number) {
         max: 50,
         precision: 0.01,
       }),
-    });
+    })
   }
 
-  return motives;
+  return motives
 }
 
 export default defineEventHandler(() => {
-  return generateMotives(6);
-});
+  return generateMotives(6)
+})
