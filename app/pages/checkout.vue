@@ -44,7 +44,7 @@ async function submitOrder() {
     <AppHeader title="Checkout">
       <NuxtLink
         to="/"
-        class="bg-blue-500 hover:bg-blue-600 text-white font-semibold px-8 py-2 rounded-full transition-colors"
+        class="border border-gray-300 bg-white hover:bg-gray-50 active:bg-gray-100 focus-visible:ring-2 focus-visible:ring-gray-300 focus-visible:outline-none text-gray-700 font-semibold px-8 py-2 rounded-full transition-colors"
       >
         Back
       </NuxtLink>
@@ -131,7 +131,7 @@ async function submitOrder() {
               <button
                 type="submit"
                 :disabled="isSubmitting"
-                class="bg-green-400 hover:bg-green-500 text-white font-semibold px-12 py-2 rounded-full transition-colors disabled:opacity-50"
+                class="bg-green-400 hover:bg-green-500 active:bg-green-600 focus-visible:ring-2 focus-visible:ring-green-300 focus-visible:outline-none text-white font-semibold px-12 py-2 rounded-full transition-colors disabled:opacity-50"
               >
                 Buy
               </button>

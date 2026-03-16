@@ -16,7 +16,7 @@ function goBack() {
   <div>
     <AppHeader title="About this Project">
       <button
-        class="bg-blue-500 hover:bg-blue-600 text-white font-semibold px-8 py-2 rounded-full transition-colors"
+        class="border border-gray-300 bg-white hover:bg-gray-50 active:bg-gray-100 focus-visible:ring-2 focus-visible:ring-gray-300 focus-visible:outline-none text-gray-700 font-semibold px-8 py-2 rounded-full transition-colors"
         @click="goBack"
       >
         Back
