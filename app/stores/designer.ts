@@ -16,14 +16,19 @@ export const useDesignerStore = defineStore('designer', () => {
   })
 
   async function fetchData() {
-    const [colorsData, designsData] = await Promise.all([
-      $fetch<Color[]>('/api/colors'),
-      $fetch<Design[]>('/api/motives'),
-    ])
-    colors.value = colorsData.map(c => ({ ...c, price: Math.round(c.price * 100) }))
-    designs.value = designsData.map(m => ({ ...m, price: Math.round(m.price * 100) }))
-    selectedColorIndex.value = 0
-    selectedDesignIndex.value = 0
+    try {
+      const [colorsData, designsData] = await Promise.all([
+        $fetch<Color[]>('/api/colors'),
+        $fetch<Design[]>('/api/motives'),
+      ])
+      colors.value = colorsData.map(c => ({ ...c, price: Math.round(c.price * 100) }))
+      designs.value = designsData.map(m => ({ ...m, price: Math.round(m.price * 100) }))
+      selectedColorIndex.value = 0
+      selectedDesignIndex.value = 0
+    }
+    catch {
+      throw createError({ status: 500, message: 'Failed to load design data' })
+    }
   }
 
   function $reset() {
