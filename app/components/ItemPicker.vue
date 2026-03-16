@@ -40,10 +40,14 @@ function scrollDown() {
     >
       <IconChevronUp class="size-8" />
     </button>
-    <div class="flex flex-col gap-3">
+    <div
+      role="listbox"
+      class="flex flex-col gap-3"
+    >
       <button
         v-for="(item, i) in visibleItems"
         :key="offset + i"
+        role="option"
         data-testid="picker-item"
         type="button"
         :aria-selected="offset + i === selectedIndex"
