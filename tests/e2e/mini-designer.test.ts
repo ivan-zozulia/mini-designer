@@ -108,7 +108,7 @@ describe('Mini Designer', { timeout: 30_000 }, async () => {
   })
 
   describe('Checkout page', () => {
-    it('submits order and shows sucess page', async () => {
+    it('submits order and shows success page', async () => {
       const page = await createPage(url('/'))
 
       await page.getByRole('link', { name: 'Go to Checkout' }).click()
