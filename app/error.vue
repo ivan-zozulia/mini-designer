@@ -11,7 +11,7 @@ const errorCodes: Record<number, string> = {
 
 const defaultMessage = 'Something went wrong'
 
-const message = error.status && errorCodes[error.status] ?? error.message ?? defaultMessage
+const message = (error.status && errorCodes[error.status]) ?? error.message ?? defaultMessage
 
 function handleError() {
   clearError({ redirect: '/' })
