@@ -1,5 +1,10 @@
 <script setup lang="ts">
+import { useMediaQuery } from '@vueuse/core'
+
 const designer = useDesignerStore()
+
+const isMobile = useMediaQuery('(max-width: 767px)')
+const orientation = computed(() => isMobile.value ? 'horizontal' : 'vertical')
 </script>
 
 <template>
@@ -20,6 +25,7 @@ const designer = useDesignerStore()
         <ItemPicker
           v-model="designer.selectedColorIndex"
           :items="designer.colors"
+          :orientation="orientation"
         >
           <template #default="{ item }">
             <div
@@ -40,6 +46,7 @@ const designer = useDesignerStore()
         <ItemPicker
           v-model="designer.selectedDesignIndex"
           :items="designer.designs"
+          :orientation="orientation"
         >
           <template #default="{ item }">
             <img

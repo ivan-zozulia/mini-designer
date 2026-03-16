@@ -74,7 +74,10 @@ function selectItem(index: number) {
 </script>
 
 <template>
-  <div class="flex flex-col items-center gap-2">
+  <div
+    class="flex items-center gap-2"
+    :class="orientation === 'horizontal' ? 'flex-row' : 'flex-col'"
+  >
     <button
       data-testid="scroll-prev"
       aria-label="Scroll to previous"
@@ -84,12 +87,16 @@ function selectItem(index: number) {
       tabindex="-1"
       @click="offset--"
     >
-      <IconChevronUp class="size-8" />
+      <IconChevronUp
+        class="size-8"
+        :class="orientation === 'horizontal' ? '-rotate-90' : ''"
+      />
     </button>
     <div
       role="listbox"
       tabindex="0"
-      class="flex flex-col gap-3 outline-none"
+      class="flex gap-3 outline-none"
+      :class="orientation === 'horizontal' ? 'flex-row' : 'flex-col'"
       @focus="onFocus"
       @blur="onBlur"
       @keydown="onKeydown"
@@ -119,7 +126,10 @@ function selectItem(index: number) {
       tabindex="-1"
       @click="offset++"
     >
-      <IconChevronDown class="size-8" />
+      <IconChevronDown
+        class="size-8"
+        :class="orientation === 'horizontal' ? '-rotate-90' : ''"
+      />
     </button>
   </div>
 </template>
