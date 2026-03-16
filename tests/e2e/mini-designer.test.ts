@@ -92,12 +92,30 @@ describe('Mini Designer', { timeout: 30_000 }, async () => {
     it('updates price when changing selections', async () => {
       const page = await createPage(url('/'))
 
+      await page.route('**/api/colors', (route) => {
+        route.fulfill({
+          json: [
+            { name: 'Red', color: '#ff0000', price: 10 },
+            { name: 'Blue', color: '#0000ff', price: 20 },
+          ],
+        })
+      })
+
+      await page.route('**/api/motives', (route) => {
+        route.fulfill({
+          json: [
+            { name: 'Cat', img: 'https://example.com/cat.png', price: 5 },
+          ],
+        })
+      })
+
+      await page.reload()
+
       const initialPrice = await page.getByText('€').textContent()
 
       await page.getByTestId('picker-item').nth(1).click()
       const priceAfterFirstPick = await page.getByText('€').textContent()
 
-      // TODO: random prices from fake API can match
       expect(priceAfterFirstPick).not.toBe(initialPrice)
 
       await page.getByTestId('picker-item').first().click()
