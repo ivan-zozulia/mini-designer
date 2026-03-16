@@ -1,7 +1,7 @@
 <script setup lang="ts">
 defineProps<{
   color: string
-  motiveImg?: string
+  designImg?: string
 }>()
 </script>
 
@@ -150,9 +150,9 @@ defineProps<{
       />
     </svg>
     <img
-      v-if="motiveImg"
-      :src="motiveImg"
-      alt="Motive"
+      v-if="designImg"
+      :src="designImg"
+      alt="Design"
       width="156"
       height="174"
       class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[80%] w-[30%] h-[30%] object-contain pointer-events-none"

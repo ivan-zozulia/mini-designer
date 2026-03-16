@@ -4,7 +4,7 @@ export interface Color {
   price: number
 }
 
-export interface Motive {
+export interface Design {
   name: string
   img: string
   price: number

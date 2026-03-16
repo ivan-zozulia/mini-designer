@@ -54,13 +54,13 @@ async function submitOrder() {
         <div class="lg:w-1/3">
           <div>
             <TShirt
-              v-if="designer.selectedColor && designer.selectedMotive"
+              v-if="designer.selectedColor && designer.selectedDesign"
               :color="designer.selectedColor.color"
-              :motive-img="designer.selectedMotive?.img"
+              :design-img="designer.selectedDesign?.img"
             />
           </div>
           <div>
-            <p>Motive: {{ designer.selectedMotive?.name }}</p>
+            <p>Design: {{ designer.selectedDesign?.name }}</p>
             <p>Shirt: {{ designer.selectedColor?.name }}</p>
           </div>
         </div>
@@ -71,9 +71,9 @@ async function submitOrder() {
 
           <div class="space-y-3">
             <div class="flex justify-between">
-              <span class="font-semibold">Motive:</span>
+              <span class="font-semibold">Design:</span>
               <span class="font-semibold tabular-nums">{{
-                formatCurrency(designer.selectedMotive?.price ?? 0)
+                formatCurrency(designer.selectedDesign?.price ?? 0)
               }}</span>
             </div>
             <div class="flex justify-between">

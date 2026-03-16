@@ -3,7 +3,7 @@ import { createPinia, setActivePinia } from 'pinia'
 import { registerEndpoint } from '@nuxt/test-utils/runtime'
 import { useDesignerStore } from '~/stores/designer'
 import { useCheckoutStore } from '~/stores/checkout'
-import type { Color, Motive } from '~/types'
+import type { Color, Design } from '~/types'
 
 const mockColors = [
   { name: 'Red', color: '#ff0000', price: 1050 },
@@ -11,16 +11,16 @@ const mockColors = [
   { name: 'Blue', color: '#0000ff', price: 1500 },
 ] as const satisfies Color[]
 
-const mockMotives = [
+const mockDesigns = [
   { name: 'Cat', img: 'https://example.com/cat.png', price: 500 },
   { name: 'Dog', img: 'https://example.com/dog.png', price: 850 },
-] as const satisfies Motive[]
+] as const satisfies Design[]
 
 registerEndpoint('/api/colors', () =>
   mockColors.map(c => ({ ...c, price: c.price / 100 })),
 )
 registerEndpoint('/api/motives', () =>
-  mockMotives.map(m => ({ ...m, price: m.price / 100 })),
+  mockDesigns.map(m => ({ ...m, price: m.price / 100 })),
 )
 
 describe('Designer store', () => {
@@ -28,12 +28,12 @@ describe('Designer store', () => {
     setActivePinia(createPinia())
   })
 
-  it('fetches and sets colors and motives', async () => {
+  it('fetches and sets colors and designs', async () => {
     const store = useDesignerStore()
     await store.fetchData()
 
     expect(store.colors).toEqual(mockColors)
-    expect(store.motives).toEqual(mockMotives)
+    expect(store.designs).toEqual(mockDesigns)
   })
 
   it('selects a different color', async () => {
@@ -45,26 +45,26 @@ describe('Designer store', () => {
     expect(store.selectedColor).toEqual(mockColors[2])
   })
 
-  it('selects a different motive', async () => {
+  it('selects a different design', async () => {
     const store = useDesignerStore()
     await store.fetchData()
 
-    store.selectedMotiveIndex = 1
+    store.selectedDesignIndex = 1
 
-    expect(store.selectedMotive).toEqual(mockMotives[1])
+    expect(store.selectedDesign).toEqual(mockDesigns[1])
   })
 
   it('updates total price when selection change', async () => {
     const store = useDesignerStore()
     await store.fetchData()
 
-    expect(store.totalPrice).toBe(mockColors[0].price + mockMotives[0].price)
+    expect(store.totalPrice).toBe(mockColors[0].price + mockDesigns[0].price)
 
     store.selectedColorIndex = 1
-    expect(store.totalPrice).toBe(mockColors[1].price + mockMotives[0].price)
+    expect(store.totalPrice).toBe(mockColors[1].price + mockDesigns[0].price)
 
-    store.selectedMotiveIndex = 1
-    expect(store.totalPrice).toBe(mockColors[1].price + mockMotives[1].price)
+    store.selectedDesignIndex = 1
+    expect(store.totalPrice).toBe(mockColors[1].price + mockDesigns[1].price)
   })
 
   it('resets selection to first items', async () => {
@@ -72,18 +72,18 @@ describe('Designer store', () => {
     await store.fetchData()
 
     store.selectedColorIndex = 2
-    store.selectedMotiveIndex = 1
+    store.selectedDesignIndex = 1
     store.$reset()
 
     expect(store.selectedColor).toEqual(mockColors[0])
-    expect(store.selectedMotive).toEqual(mockMotives[0])
+    expect(store.selectedDesign).toEqual(mockDesigns[0])
   })
 
-  it('has no selected color or motive before data is fetched', () => {
+  it('has no selected color or design before data is fetched', () => {
     const store = useDesignerStore()
 
     expect(store.selectedColor).toBeUndefined()
-    expect(store.selectedMotive).toBeUndefined()
+    expect(store.selectedDesign).toBeUndefined()
   })
 
   it('returns 0 for totalPrice when data is empty', () => {

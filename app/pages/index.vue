@@ -32,17 +32,17 @@ const designer = useDesignerStore()
       </div>
       <div class="flex-1 max-w-md mx-auto order-1 md:order-2">
         <TShirt
-          v-if="designer.selectedColor && designer.selectedMotive"
+          v-if="designer.selectedColor && designer.selectedDesign"
           :color="designer.selectedColor.color"
-          :motive-img="designer.selectedMotive.img"
+          :design-img="designer.selectedDesign.img"
         />
       </div>
 
       <div class="shrink-0 order-3">
         <ItemPicker
-          :items="designer.motives"
-          :selected-index="designer.selectedMotiveIndex"
-          @select="(i: number) => (designer.selectedMotiveIndex = i)"
+          :items="designer.designs"
+          :selected-index="designer.selectedDesignIndex"
+          @select="(i: number) => (designer.selectedDesignIndex = i)"
         >
           <template #default="{ item }">
             <img
