@@ -93,10 +93,10 @@ describe('Mini Designer', { timeout: 30_000 }, async () => {
       const initialPrice = await page.getByText('€').textContent()
 
       await page.getByTestId('picker-item').nth(1).click()
-      const priceAfterFirstSwitch = await page.getByText('€').textContent()
+      const priceAfterFirstPick = await page.getByText('€').textContent()
 
       // TODO: random prices from fake API can match
-      expect(priceAfterFirstSwitch).not.toBe(initialPrice)
+      expect(priceAfterFirstPick).not.toBe(initialPrice)
 
       await page.getByTestId('picker-item').first().click()
       const priceAfterReset = await page.getByText('€').textContent()
