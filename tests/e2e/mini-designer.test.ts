@@ -177,5 +177,21 @@ describe('Mini Designer', { timeout: 30_000 }, async () => {
 
       await page.close()
     })
+
+    it('resets selection after Back button', async () => {
+      const page = await createPage(url('/'))
+      const initialPrice = await page.getByText('€').textContent()
+
+      await page.getByTestId('picker-item').nth(1).click()
+      await page.getByRole('link', { name: 'Go to Checkout' }).click()
+      await page.getByLabel('Name').fill('Erika')
+      await page.getByLabel('Address').fill('Goethestraße 10')
+      await page.getByRole('button', { name: 'Buy' }).click()
+      await page.getByRole('button', { name: 'Back' }).click()
+
+      await expect(page.getByText(initialPrice).first()).toBeVisible()
+
+      await page.close()
+    })
   })
 })
