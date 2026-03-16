@@ -5,6 +5,7 @@ const designer = useDesignerStore()
 
 const isMobile = useMediaQuery('(max-width: 767px)')
 const orientation = computed(() => isMobile.value ? 'horizontal' : 'vertical')
+const visibleCount = computed(() => isMobile.value ? 3 : 4)
 </script>
 
 <template>
@@ -26,6 +27,7 @@ const orientation = computed(() => isMobile.value ? 'horizontal' : 'vertical')
           v-model="designer.selectedColorIndex"
           :items="designer.colors"
           :orientation="orientation"
+          :visible-count="visibleCount"
         >
           <template #default="{ item }">
             <div
@@ -47,6 +49,7 @@ const orientation = computed(() => isMobile.value ? 'horizontal' : 'vertical')
           v-model="designer.selectedDesignIndex"
           :items="designer.designs"
           :orientation="orientation"
+          :visible-count="visibleCount"
         >
           <template #default="{ item }">
             <img

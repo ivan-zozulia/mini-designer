@@ -1,12 +1,11 @@
 <script setup lang="ts" generic="T">
-const { items, orientation = 'vertical' } = defineProps<{
+const { items, orientation = 'vertical', visibleCount = 4 } = defineProps<{
   items: T[]
   orientation?: 'vertical' | 'horizontal'
+  visibleCount?: number
 }>()
 
 const selected = defineModel<number>({ required: true })
-
-const visibleCount = 4
 const offset = ref(0)
 const highlightedIndex = ref(-1)
 
