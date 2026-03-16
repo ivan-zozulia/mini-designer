@@ -93,4 +93,14 @@ describe('ItemPicker', () => {
     const downButton = wrapper.find('[data-testid="scroll-down"]')
     expect(downButton.attributes('disabled')).toBeDefined()
   })
+
+  it('renders no items and disables both arrows when items is empty', async () => {
+    const wrapper = await mountSuspended(ItemPicker, {
+      props: { items: [], selectedIndex: 0 },
+    })
+
+    expect(wrapper.findAll('[data-testid="picker-item"]')).toHaveLength(0)
+    expect(wrapper.find('[data-testid="scroll-up"]').attributes('disabled')).toBeDefined()
+    expect(wrapper.find('[data-testid="scroll-down"]').attributes('disabled')).toBeDefined()
+  })
 })
