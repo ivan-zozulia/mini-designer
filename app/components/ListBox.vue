@@ -5,6 +5,10 @@ const { items, orientation = 'vertical', visibleCount = 4 } = defineProps<{
   visibleCount?: number
 }>()
 
+defineSlots<{
+  default(props: { item: T }): void
+}>()
+
 const selected = defineModel<number>({ required: true })
 const offset = ref(0)
 const highlightedIndex = ref(-1)
@@ -110,10 +114,7 @@ function selectItem(index: number) {
         :class="offset + i === selected ? 'border-emerald-400' : 'border-transparent'"
         @click="selectItem(offset + i)"
       >
-        <slot
-          :item="item"
-          :index="offset + i"
-        />
+        <slot :item="item" />
       </div>
     </div>
     <button
