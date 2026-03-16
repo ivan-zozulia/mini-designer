@@ -18,9 +18,8 @@ const designer = useDesignerStore()
     <main class="flex-1 flex flex-col md:flex-row items-center justify-center gap-4 p-4 md:p-8">
       <div class="shrink-0 order-2 md:order-1">
         <ItemPicker
+          v-model="designer.selectedColorIndex"
           :items="designer.colors"
-          :selected-index="designer.selectedColorIndex"
-          @select="(i: number) => (designer.selectedColorIndex = i)"
         >
           <template #default="{ item }">
             <div
@@ -39,9 +38,8 @@ const designer = useDesignerStore()
       </div>
       <div class="shrink-0 order-3">
         <ItemPicker
+          v-model="designer.selectedDesignIndex"
           :items="designer.designs"
-          :selected-index="designer.selectedDesignIndex"
-          @select="(i: number) => (designer.selectedDesignIndex = i)"
         >
           <template #default="{ item }">
             <img

@@ -1,73 +1,55 @@
 <script setup lang="ts" generic="T">
-const { items, selectedIndex } = defineProps<{
+const { items } = defineProps<{
   items: T[]
-  selectedIndex: number
 }>()
 
-const emit = defineEmits<{
-  select: [index: number]
-}>()
+const selected = defineModel<number>({ required: true })
 
 const visibleCount = 4
 const offset = ref(0)
 
 const visibleItems = computed(() => items.slice(offset.value, offset.value + visibleCount))
-const canScrollUp = computed(() => offset.value > 0)
-const canScrollDown = computed(() => offset.value + visibleCount < items.length)
-
-function scrollUp() {
-  if (canScrollUp.value) {
-    offset.value--
-  }
-}
-
-function scrollDown() {
-  if (canScrollDown.value) {
-    offset.value++
-  }
-}
+const canScrollPrev = computed(() => offset.value > 0)
+const canScrollNext = computed(() => offset.value + visibleCount < items.length)
 </script>
 
 <template>
   <div class="flex flex-col items-center gap-2">
     <button
-      data-testid="scroll-up"
-      aria-label="Scroll up"
+      data-testid="scroll-prev"
+      aria-label="Scroll to previous"
       type="button"
-      :disabled="!canScrollUp"
+      :disabled="!canScrollPrev"
       class="text-emerald-500 disabled:text-gray-300 transition-colors"
-      @click="scrollUp"
+      tabindex="-1"
+      @click="offset--"
     >
       <IconChevronUp class="size-8" />
     </button>
-    <div
-      role="listbox"
-      class="flex flex-col gap-3"
-    >
-      <button
+    <div class="flex flex-col gap-3">
+      <div
         v-for="(item, i) in visibleItems"
         :key="offset + i"
-        role="option"
         data-testid="picker-item"
-        type="button"
-        :aria-selected="offset + i === selectedIndex"
-        class="rounded-lg border-2 p-1 transition-colors"
-        :class="offset + i === selectedIndex ? 'border-emerald-400' : 'border-transparent'"
-        @click="emit('select', offset + i)"
+        :aria-selected="offset + i === selected"
+        class="rounded-lg border-2 p-1 transition-colors cursor-pointer"
+        :class="offset + i === selected ? 'border-emerald-400' : 'border-transparent'"
+        @click="selected = offset + i"
       >
         <slot
           :item="item"
           :index="offset + i"
         />
-      </button>
+      </div>
     </div>
     <button
-      data-testid="scroll-down"
-      aria-label="Scroll down"
+      data-testid="scroll-next"
+      aria-label="Scroll to next"
       type="button"
-      :disabled="!canScrollDown"
+      :disabled="!canScrollNext"
       class="text-emerald-500 disabled:text-gray-300 transition-colors"
-      @click="scrollDown"
+      tabindex="-1"
+      @click="offset++"
     >
       <IconChevronDown class="size-8" />
     </button>
