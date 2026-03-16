@@ -173,7 +173,7 @@ describe('Mini Designer', { timeout: 30_000 }, async () => {
       await page.getByRole('button', { name: 'Buy' }).click()
       await page.getByRole('button', { name: 'Design another product' }).click()
 
-      await expect(page.getByText(initialPrice).first()).toBeVisible()
+      await expect(page.getByText(initialPrice!).first()).toBeVisible()
 
       await page.close()
     })
@@ -189,7 +189,7 @@ describe('Mini Designer', { timeout: 30_000 }, async () => {
       await page.getByRole('button', { name: 'Buy' }).click()
       await page.getByRole('button', { name: 'Back' }).click()
 
-      await expect(page.getByText(initialPrice).first()).toBeVisible()
+      await expect(page.getByText(initialPrice!).first()).toBeVisible()
 
       await page.close()
     })
