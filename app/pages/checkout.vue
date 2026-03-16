@@ -49,7 +49,11 @@ async function submitOrder() {
       <div class="flex flex-col lg:flex-row gap-8 max-w-6xl mx-auto">
         <div class="lg:w-1/3">
           <div>
-            <TShirt />
+            <TShirt
+              v-if="designer.selectedColor && designer.selectedMotive"
+              :color="designer.selectedColor.color"
+              :motive-img="designer.selectedMotive?.img"
+            />
           </div>
           <div>
             <p>Motive: {{ designer.selectedMotive?.name }}</p>
@@ -113,7 +117,7 @@ async function submitOrder() {
                 type="text"
                 name="name"
                 autocomplete="name"
-                placeholder="Enter your name..."
+                placeholder="Enter your name"
                 class="w-full border rounded-lg px-4 py-2 outline-none focus-visible:ring-2 focus-visible:ring-blue-400 transition-colors"
                 :class="
                   checkout.errors.name
@@ -146,7 +150,7 @@ async function submitOrder() {
                 type="text"
                 name="address"
                 autocomplete="street-address"
-                placeholder="Enter your address..."
+                placeholder="Enter your address"
                 class="w-full border rounded-lg px-4 py-2 outline-none focus-visible:ring-2 focus-visible:ring-blue-400 transition-colors"
                 :class="
                   checkout.errors.address
