@@ -17,8 +17,43 @@ const designer = useDesignerStore()
     </AppHeader>
     <main class="flex-1 flex flex-col md:flex-row items-center justify-center gap-4 p-4 md:p-8">
       <div class="shrink-0 order-2 md:order-1">
-        <ItemPicker />
-        <ItemPicker />
+        <ItemPicker
+          :items="designer.colors"
+          :selected-index="designer.selectedColorIndex"
+          @select="(i: number) => (designer.selectedColorIndex = i)"
+        >
+          <template #default="{ item }">
+            <div
+              class="size-12 rounded-full"
+              :style="{ backgroundColor: item.color }"
+            />
+          </template>
+        </ItemPicker>
+      </div>
+      <div class="flex-1 max-w-md mx-auto order-1 md:order-2">
+        <TShirt
+          v-if="designer.selectedColor && designer.selectedMotive"
+          :color="designer.selectedColor.color"
+          :motive-img="designer.selectedMotive.img"
+        />
+      </div>
+
+      <div class="shrink-0 order-3">
+        <ItemPicker
+          :items="designer.motives"
+          :selected-index="designer.selectedMotiveIndex"
+          @select="(i: number) => (designer.selectedMotiveIndex = i)"
+        >
+          <template #default="{ item }">
+            <img
+              :src="item.img"
+              :alt="item.name"
+              width="48"
+              height="48"
+              class="size-12 object-cover rounded"
+            >
+          </template>
+        </ItemPicker>
       </div>
     </main>
   </div>
