@@ -22,18 +22,18 @@ jobs:
         with:
           node-version-file: .nvmrc
 
-      - name: Install dependencies
+      - name: 📦 Install dependencies
         run: npm ci
 
-      - name: Set up project
+      - name: 🚧 Set up project
         run: npx nuxi prepare
 
-      - name: Lint
+      - name: 📝 Lint
         run: npx eslint .  
 
-      - name: Type check
+      - name: 💪 Type check
         run: npx nuxi typecheck
 
-      - name: Test project
+      - name: 🧪 Test project
         run: npm run test:run
         timeout-minutes: 5
