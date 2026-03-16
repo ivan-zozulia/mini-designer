@@ -1,11 +1,11 @@
 import { mountSuspended } from '@nuxt/test-utils/runtime'
 import type { DOMWrapper, VueWrapper } from '@vue/test-utils'
 import { beforeEach, describe, expect, it } from 'vitest'
-import ItemPicker from '~/components/ItemPicker.vue'
+import ListBox from '~/components/ListBox.vue'
 
-describe('given empty ItemPicker', () => {
+describe('given empty ListBox', () => {
   it('should render no items and disable both buttons', async () => {
-    const wrapper = await mountSuspended(ItemPicker, {
+    const wrapper = await mountSuspended(ListBox, {
       props: { items: [], modelValue: 0 },
     })
     expect(wrapper.findAll('[role=option]')).toHaveLength(0)
@@ -14,14 +14,14 @@ describe('given empty ItemPicker', () => {
   })
 })
 
-describe('given vertical ItemPicker', () => {
+describe('given vertical ListBox', () => {
   const items = ['A', 'B', 'C', 'D', 'E', 'F']
   let wrapper: VueWrapper
   let listbox: DOMWrapper<Element>
   let options: DOMWrapper<Element>[]
 
   beforeEach(async () => {
-    wrapper = await mountSuspended(ItemPicker, {
+    wrapper = await mountSuspended(ListBox, {
       props: { items, modelValue: 0 },
     })
     listbox = wrapper.find('[role=listbox]')
@@ -47,9 +47,9 @@ describe('given vertical ItemPicker', () => {
   })
 })
 
-describe('given horizontal ItemPicker', () => {
+describe('given horizontal ListBox', () => {
   it('should navigate with right and left arrows', async () => {
-    const wrapper = await mountSuspended(ItemPicker, {
+    const wrapper = await mountSuspended(ListBox, {
       props: { items: ['A', 'B', 'C', 'D', 'E', 'F'], modelValue: 0, orientation: 'horizontal' },
     })
     const listbox = wrapper.find('[role=listbox]')

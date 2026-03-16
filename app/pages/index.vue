@@ -23,7 +23,7 @@ const visibleCount = computed(() => isMobile.value ? 3 : 4)
     </AppHeader>
     <main class="flex-1 flex flex-col md:flex-row items-center justify-center gap-4 p-4 md:p-8">
       <div class="shrink-0 order-2 md:order-1">
-        <ItemPicker
+        <ListBox
           v-model="designer.selectedColorIndex"
           :items="designer.colors"
           :orientation="orientation"
@@ -35,7 +35,7 @@ const visibleCount = computed(() => isMobile.value ? 3 : 4)
               :style="{ backgroundColor: item.color }"
             />
           </template>
-        </ItemPicker>
+        </ListBox>
       </div>
       <div class="flex-1 max-w-md mx-auto order-1 md:order-2">
         <TShirt
@@ -45,7 +45,7 @@ const visibleCount = computed(() => isMobile.value ? 3 : 4)
         />
       </div>
       <div class="shrink-0 order-3">
-        <ItemPicker
+        <ListBox
           v-model="designer.selectedDesignIndex"
           :items="designer.designs"
           :orientation="orientation"
@@ -60,7 +60,7 @@ const visibleCount = computed(() => isMobile.value ? 3 : 4)
               class="size-12 object-cover rounded"
             >
           </template>
-        </ItemPicker>
+        </ListBox>
       </div>
     </main>
   </div>
