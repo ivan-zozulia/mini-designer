@@ -1,13 +1,19 @@
+<script setup lang="ts">
+defineProps<{
+  color: string
+  motiveImg?: string
+}>()
+</script>
+
 <template>
   <div
     class="relative inline-flex"
-    :style="{ color: '#94d600' }"
+    :style="{ color }"
   >
     <svg
-      version="1.1"
-      xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 520 580"
       class="w-full h-full"
+      aria-hidden="true"
     >
       <path
         fill="currentColor"
@@ -143,5 +149,13 @@
         d="M198.5,27.3c0,0,15.9,16.2,58.7,16.2s61-13.6,61-13.6"
       />
     </svg>
+    <img
+      v-if="motiveImg"
+      :src="motiveImg"
+      alt="Motive"
+      width="156"
+      height="174"
+      class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[80%] w-[30%] h-[30%] object-contain pointer-events-none"
+    >
   </div>
 </template>
