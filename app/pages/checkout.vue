@@ -107,70 +107,26 @@ async function submitOrder() {
             class="space-y-4"
             @submit.prevent="submitOrder"
           >
-            <div>
-              <label
-                for="order-name"
-                class="block text-sm font-semibold mb-1"
-              >Name</label>
-              <input
-                id="order-name"
-                v-model="checkout.name"
-                type="text"
-                name="name"
-                autocomplete="name"
-                placeholder="Enter your name"
-                class="w-full border rounded-lg px-4 py-2 outline-none focus-visible:ring-2 focus-visible:ring-blue-400 transition-colors"
-                :class="
-                  checkout.errors.name
-                    ? 'border-red-500'
-                    : 'border-gray-300'
-                "
-              >
-              <div
-                v-if="checkout.errors.name"
-                aria-live="polite"
-              >
-                <p
-                  v-for="err in checkout.errors.name"
-                  :key="err"
-                  class="text-red-500 text-xs mt-1"
-                >
-                  {{ err }}
-                </p>
-              </div>
-            </div>
-            <div>
-              <label
-                for="order-address"
-                class="block text-sm font-semibold mb-1"
-              >Address</label>
-              <input
-                id="order-address"
-                v-model="checkout.address"
-                type="text"
-                name="address"
-                autocomplete="street-address"
-                placeholder="Enter your address"
-                class="w-full border rounded-lg px-4 py-2 outline-none focus-visible:ring-2 focus-visible:ring-blue-400 transition-colors"
-                :class="
-                  checkout.errors.address
-                    ? 'border-red-500'
-                    : 'border-gray-300'
-                "
-              >
-              <div
-                v-if="checkout.errors.address"
-                aria-live="polite"
-              >
-                <p
-                  v-for="err in checkout.errors.address"
-                  :key="err"
-                  class="text-red-500 text-xs mt-1"
-                >
-                  {{ err }}
-                </p>
-              </div>
-            </div>
+            <FormInput
+              id="order-name"
+              v-model="checkout.name"
+              label="Name"
+              type="text"
+              name="name"
+              autocomplete="name"
+              placeholder="Enter your name"
+              :errors="checkout.errors.name"
+            />
+            <FormInput
+              id="order-address"
+              v-model="checkout.address"
+              label="Address"
+              type="text"
+              name="address"
+              autocomplete="street-address"
+              placeholder="Enter your address"
+              :errors="checkout.errors.address"
+            />
             <div class="pt-4 flex justify-end">
               <button
                 type="submit"
