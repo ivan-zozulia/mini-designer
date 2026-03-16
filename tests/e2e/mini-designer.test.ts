@@ -124,5 +124,20 @@ describe('Mini Designer', { timeout: 30_000 }, async () => {
 
       await page.close()
     })
+
+    it('shows form error message and field errors on invalid submit', async () => {
+      const page = await createPage(url('/'))
+      await page.getByRole('link', { name: 'Go to Checkout' }).click()
+
+      await page.getByRole('button', { name: 'Buy' }).click()
+
+      await expect(page.getByText('The given data was invalid.')).toBeVisible()
+      await expect(page.getByText('The name field is required.')).toBeVisible()
+      await expect(page.getByText('The address field is required.')).toBeVisible()
+
+      await expect(page).toHaveURL(/\/checkout$/)
+
+      await page.close()
+    })
   })
 })
