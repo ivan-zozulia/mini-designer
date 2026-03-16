@@ -86,5 +86,24 @@ describe('Mini Designer', { timeout: 30_000 }, async () => {
       await expect(page.getByTestId('picker-item').first()).toBeVisible()
       await expect(page.getByText('€')).toBeVisible()
     })
+
+    it('updates price when changing selections', async () => {
+      const page = await createPage(url('/'))
+
+      const initialPrice = await page.getByText('€').textContent()
+
+      await page.getByTestId('picker-item').nth(1).click()
+      const priceAfterFirstSwitch = await page.getByText('€').textContent()
+
+      // TODO: random prices from fake API can match
+      expect(priceAfterFirstSwitch).not.toBe(initialPrice)
+
+      await page.getByTestId('picker-item').first().click()
+      const priceAfterReset = await page.getByText('€').textContent()
+
+      expect(priceAfterReset).toBe(initialPrice)
+
+      await page.close()
+    })
   })
 })
