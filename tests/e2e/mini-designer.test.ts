@@ -85,6 +85,8 @@ describe('Mini Designer', { timeout: 30_000 }, async () => {
 
       await expect(page.getByTestId('picker-item').first()).toBeVisible()
       await expect(page.getByText('€')).toBeVisible()
+
+      await page.close()
     })
 
     it('updates price when changing selections', async () => {
