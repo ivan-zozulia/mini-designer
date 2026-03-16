@@ -37,7 +37,6 @@ const designer = useDesignerStore()
           :design-img="designer.selectedDesign.img"
         />
       </div>
-
       <div class="shrink-0 order-3">
         <ItemPicker
           :items="designer.designs"

@@ -44,31 +44,32 @@ async function submitOrder() {
     <AppHeader title="Checkout">
       <NuxtLink
         to="/"
+        class="bg-blue-500 hover:bg-blue-600 text-white font-semibold px-8 py-2 rounded-full transition-colors"
       >
         Back
       </NuxtLink>
     </AppHeader>
-
     <main class="flex-1 p-4 md:p-8">
       <div class="flex flex-col lg:flex-row gap-8 max-w-6xl mx-auto">
         <div class="lg:w-1/3">
-          <div>
+          <div class="max-w-xs mx-auto">
             <TShirt
               v-if="designer.selectedColor && designer.selectedDesign"
               :color="designer.selectedColor.color"
               :design-img="designer.selectedDesign?.img"
             />
           </div>
-          <div>
+          <div
+            class="mt-4 text-sm font-semibold text-center lg:text-left"
+          >
             <p>Design: {{ designer.selectedDesign?.name }}</p>
             <p>Shirt: {{ designer.selectedColor?.name }}</p>
           </div>
         </div>
-        <div class="lg:w-1/3">
+        <div class="lg:w-1/3 border border-gray-200 rounded-xl p-6">
           <h2 class="text-2xl font-light tracking-wide mb-6">
             Order Data
           </h2>
-
           <div class="space-y-3">
             <div class="flex justify-between">
               <span class="font-semibold">Design:</span>
@@ -83,9 +84,7 @@ async function submitOrder() {
               }}</span>
             </div>
           </div>
-
           <hr class="my-6">
-
           <div class="flex justify-between">
             <span class="text-xl font-semibold">Total:</span>
             <span class="text-xl font-semibold tabular-nums">{{
@@ -93,11 +92,10 @@ async function submitOrder() {
             }}</span>
           </div>
         </div>
-        <div class="lg:w-1/3">
+        <div class="lg:w-1/3 border border-gray-200 rounded-xl p-6">
           <h2 class="text-2xl font-light tracking-wide mb-6">
             Personal Data
           </h2>
-
           <p
             v-if="checkout.formError"
             class="text-red-500 text-sm mb-4"
@@ -105,7 +103,6 @@ async function submitOrder() {
           >
             {{ checkout.formError }}
           </p>
-
           <form
             class="space-y-4"
             @submit.prevent="submitOrder"
@@ -142,7 +139,6 @@ async function submitOrder() {
                 </p>
               </div>
             </div>
-
             <div>
               <label
                 for="order-address"
@@ -175,7 +171,6 @@ async function submitOrder() {
                 </p>
               </div>
             </div>
-
             <div class="pt-4 flex justify-end">
               <button
                 type="submit"

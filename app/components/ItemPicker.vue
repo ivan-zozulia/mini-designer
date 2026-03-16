@@ -35,6 +35,7 @@ function scrollDown() {
       aria-label="Scroll up"
       type="button"
       :disabled="!canScrollUp"
+      class="text-emerald-500 disabled:text-gray-300 transition-colors"
       @click="scrollUp"
     >
       <IconChevronUp class="size-8" />
@@ -61,6 +62,7 @@ function scrollDown() {
       aria-label="Scroll down"
       type="button"
       :disabled="!canScrollDown"
+      class="text-emerald-500 disabled:text-gray-300 transition-colors"
       @click="scrollDown"
     >
       <IconChevronDown class="size-8" />
