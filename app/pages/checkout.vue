@@ -56,7 +56,7 @@ async function submitOrder() {
             <TShirt
               v-if="designer.selectedColor && designer.selectedDesign"
               :color="designer.selectedColor.color"
-              :design-img="designer.selectedDesign?.img"
+              :design-img="designer.selectedDesign.img"
             />
           </div>
           <div
