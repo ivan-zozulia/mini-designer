@@ -6,6 +6,10 @@ const designer = useDesignerStore()
 const checkout = useCheckoutStore()
 const isSubmitting = ref(false)
 
+function isOrderErrorResponse(data: unknown): data is OrderErrorResponse {
+  return typeof data === 'object' && data !== null && 'errors' in data
+}
+
 async function submitOrder() {
   checkout.errors = {}
   checkout.formError = ''
@@ -23,10 +27,10 @@ async function submitOrder() {
   }
   catch (e: unknown) {
     // https://github.com/unjs/ofetch?tab=readme-ov-file#%EF%B8%8F-handling-errors
-    if (e instanceof FetchError && e.data) {
-      const data = e.data as OrderErrorResponse
+    if (e instanceof FetchError && isOrderErrorResponse(e.data)) {
+      const data = e.data
       checkout.errors = data.errors
-      checkout.formError = data.message ?? ''
+      checkout.formError = data.message
     }
   }
   finally {
