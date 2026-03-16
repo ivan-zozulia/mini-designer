@@ -104,7 +104,7 @@ describe('Checkout store', () => {
     expect(store.name).toBe('')
     expect(store.address).toBe('')
     expect(store.errors).toEqual({})
-    expect(store.generalError).toBe('')
+    expect(store.formError).toBe('')
   })
 
   it('resets all fields', () => {
@@ -113,13 +113,13 @@ describe('Checkout store', () => {
     store.name = 'Erika Mustermann'
     store.address = 'Goethestraße 10'
     store.errors = { name: ['The name must not be longer than 15 characters.'] }
-    store.generalError = 'The given data was invalid.'
+    store.formError = 'The given data was invalid.'
 
     store.$reset()
 
     expect(store.name).toBe('')
     expect(store.address).toBe('')
     expect(store.errors).toEqual({})
-    expect(store.generalError).toBe('')
+    expect(store.formError).toBe('')
   })
 })

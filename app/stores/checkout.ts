@@ -3,19 +3,19 @@ import type { CheckoutForm, OrderErrors } from '~/types'
 export const useCheckoutStore = defineStore('checkout', () => {
   const form: CheckoutForm = reactive({ name: '', address: '' })
   const errors = ref<OrderErrors>({})
-  const generalError = ref('')
+  const formError = ref('')
 
   function $reset() {
     form.name = ''
     form.address = ''
     errors.value = {}
-    generalError.value = ''
+    formError.value = ''
   }
 
   return {
     ...toRefs(form),
     errors,
-    generalError,
+    formError,
     $reset,
   }
 })

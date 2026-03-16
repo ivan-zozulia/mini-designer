@@ -8,7 +8,7 @@ const isSubmitting = ref(false)
 
 async function submitOrder() {
   checkout.errors = {}
-  checkout.generalError = ''
+  checkout.formError = ''
   isSubmitting.value = true
 
   try {
@@ -26,7 +26,7 @@ async function submitOrder() {
     if (e instanceof FetchError && e.data) {
       const data = e.data as OrderErrorResponse
       checkout.errors = data.errors
-      checkout.generalError = data.message ?? ''
+      checkout.formError = data.message ?? ''
     }
   }
   finally {
@@ -95,11 +95,11 @@ async function submitOrder() {
           </h2>
 
           <p
-            v-if="checkout.generalError"
+            v-if="checkout.formError"
             class="text-red-500 text-sm mb-4"
             aria-live="polite"
           >
-            {{ checkout.generalError }}
+            {{ checkout.formError }}
           </p>
 
           <form
