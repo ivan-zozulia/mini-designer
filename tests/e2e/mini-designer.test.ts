@@ -161,7 +161,7 @@ describe('Mini Designer', { timeout: 30_000 }, async () => {
     })
   })
 
-  describe('Order success page', () => {
+  describe('Order Success page', () => {
     it('resets selection after "Design another product"', async () => {
       const page = await createPage(url('/'))
       const initialPrice = await page.getByText('€').textContent()

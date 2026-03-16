@@ -11,7 +11,7 @@ function designAnother() {
 
 <template>
   <div>
-    <AppHeader title="Order success">
+    <AppHeader title="Order Success">
       <button
         class="border border-gray-300 bg-white hover:bg-gray-50 active:bg-gray-100 focus-visible:ring-2 focus-visible:ring-gray-300 focus-visible:outline-none text-gray-700 font-semibold px-8 py-2 rounded-full transition-colors"
         @click="designAnother"
