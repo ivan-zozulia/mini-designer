@@ -74,5 +74,23 @@ describe('TShirt', () => {
       expect(buttons[0]?.attributes('aria-selected')).toBe('false')
       expect(buttons[1]?.attributes('aria-selected')).toBe('true')
     })
+
+    it('disables up arrow when at top', async () => {
+      const wrapper = await mountSuspended(ItemPicker, {
+        props: { items, selectedIndex: 0 },
+      })
+
+      const upButton = wrapper.find('[data-testid="scroll-up"]')
+      expect(upButton.attributes('disabled')).toBeDefined()
+    })
+
+    it('disables down arrow when at bottom', async () => {
+      const wrapper = await mountSuspended(ItemPicker, {
+        props: { items, selectedIndex: 2 },
+      })
+
+      const downButton = wrapper.find('[data-testid="scroll-down"]')
+      expect(downButton.attributes('disabled')).toBeDefined()
+    })
   })
 })
