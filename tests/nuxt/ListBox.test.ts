@@ -3,7 +3,7 @@ import type { DOMWrapper, VueWrapper } from '@vue/test-utils'
 import { beforeEach, describe, expect, it } from 'vitest'
 import ListBox from '~/components/ListBox.vue'
 
-describe('given empty ListBox', () => {
+describe('Empty ListBox', () => {
   it('should render no items and disable both buttons', async () => {
     const wrapper = await mountSuspended(ListBox, {
       props: { items: [], modelValue: 0 },
@@ -14,7 +14,7 @@ describe('given empty ListBox', () => {
   })
 })
 
-describe('given vertical ListBox', () => {
+describe('Vertical ListBox', () => {
   const items = ['A', 'B', 'C', 'D', 'E', 'F']
   let wrapper: VueWrapper
   let listbox: DOMWrapper<Element>
@@ -47,7 +47,7 @@ describe('given vertical ListBox', () => {
   })
 })
 
-describe('given horizontal ListBox', () => {
+describe('Horizontal ListBox', () => {
   it('should navigate with right and left arrows', async () => {
     const wrapper = await mountSuspended(ListBox, {
       props: { items: ['A', 'B', 'C', 'D', 'E', 'F'], modelValue: 0, orientation: 'horizontal' },
