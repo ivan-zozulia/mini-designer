@@ -3,16 +3,18 @@ import type { DOMWrapper, VueWrapper } from '@vue/test-utils'
 import { beforeEach, describe, expect, it } from 'vitest'
 import ItemPicker from '~/components/ItemPicker.vue'
 
-it('should render no items and disable both buttons when empty', async () => {
-  const w = await mountSuspended(ItemPicker, {
-    props: { items: [], modelValue: 0 },
+describe('given empty ItemPicker', () => {
+  it('should render no items and disable both buttons', async () => {
+    const wrapper = await mountSuspended(ItemPicker, {
+      props: { items: [], modelValue: 0 },
+    })
+    expect(wrapper.findAll('[role=option]')).toHaveLength(0)
+    expect(wrapper.find('[data-testid="scroll-prev"]').attributes('disabled')).toBeDefined()
+    expect(wrapper.find('[data-testid="scroll-next"]').attributes('disabled')).toBeDefined()
   })
-  expect(w.findAll('[data-testid="picker-item"]')).toHaveLength(0)
-  expect(w.find('[data-testid="scroll-prev"]').attributes('disabled')).toBeDefined()
-  expect(w.find('[data-testid="scroll-next"]').attributes('disabled')).toBeDefined()
 })
 
-describe('when focus on listbox', () => {
+describe('given vertical ItemPicker', () => {
   const items = ['A', 'B', 'C', 'D', 'E', 'F']
   let wrapper: VueWrapper
   let listbox: DOMWrapper<Element>
@@ -27,18 +29,33 @@ describe('when focus on listbox', () => {
     await listbox.trigger('focus')
   })
 
-  it('should highlight selected item on focus', () => {
-    expect(options[0]?.attributes('data-highlighted')).toBe('')
-  })
-
   it('should select item when clicked', async () => {
     await options[2]?.trigger('click')
     expect(wrapper.emitted('update:modelValue')?.[0]).toEqual([2])
   })
 
+  it('should highlight selected item on focus', () => {
+    expect(options[0]?.attributes('data-highlighted')).toBe('')
+  })
+
   it('should navigate and select with arrows and enter', async () => {
     await listbox.trigger('keydown', { key: 'ArrowDown' })
     await listbox.trigger('keydown', { key: 'ArrowDown' })
+    await listbox.trigger('keydown', { key: 'Enter' })
+
+    expect(wrapper.emitted('update:modelValue')?.[0]).toEqual([2])
+  })
+})
+
+describe('given horizontal ItemPicker', () => {
+  it('should navigate with right and left arrows', async () => {
+    const wrapper = await mountSuspended(ItemPicker, {
+      props: { items: ['A', 'B', 'C', 'D', 'E', 'F'], modelValue: 0, orientation: 'horizontal' },
+    })
+    const listbox = wrapper.find('[role=listbox]')
+    await listbox.trigger('focus')
+    await listbox.trigger('keydown', { key: 'ArrowRight' })
+    await listbox.trigger('keydown', { key: 'ArrowRight' })
     await listbox.trigger('keydown', { key: 'Enter' })
 
     expect(wrapper.emitted('update:modelValue')?.[0]).toEqual([2])

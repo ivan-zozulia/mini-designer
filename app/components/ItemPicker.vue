@@ -1,6 +1,7 @@
 <script setup lang="ts" generic="T">
-const { items } = defineProps<{
+const { items, orientation = 'vertical' } = defineProps<{
   items: T[]
+  orientation?: 'vertical' | 'horizontal'
 }>()
 
 const selected = defineModel<number>({ required: true })
@@ -47,11 +48,14 @@ function onBlur() {
 }
 
 function onKeydown(e: KeyboardEvent) {
-  if (e.key === 'ArrowDown') {
+  const nextKey = orientation === 'horizontal' ? 'ArrowRight' : 'ArrowDown'
+  const prevKey = orientation === 'horizontal' ? 'ArrowLeft' : 'ArrowUp'
+
+  if (e.key === nextKey) {
     e.preventDefault()
     highlightNext()
   }
-  else if (e.key === 'ArrowUp') {
+  else if (e.key === prevKey) {
     e.preventDefault()
     highlightPrev()
   }
@@ -84,7 +88,8 @@ function selectItem(index: number) {
     </button>
     <div
       role="listbox"
-      class="flex flex-col gap-3"
+      tabindex="0"
+      class="flex flex-col gap-3 outline-none"
       @focus="onFocus"
       @blur="onBlur"
       @keydown="onKeydown"
@@ -93,10 +98,9 @@ function selectItem(index: number) {
         v-for="(item, i) in visibleItems"
         :key="offset + i"
         role="option"
-        data-testid="picker-item"
         :aria-selected="offset + i === selected"
         :data-highlighted="highlightedIndex === offset + i ? '' : undefined"
-        class="rounded-lg border-2 p-1 transition-colors cursor-pointer"
+        class="rounded-lg border-2 p-1 transition-colors cursor-pointer data-highlighted:ring-2 data-highlighted:ring-emerald-300"
         :class="offset + i === selected ? 'border-emerald-400' : 'border-transparent'"
         @click="selectItem(offset + i)"
       >

@@ -9,7 +9,7 @@ describe('Mini Designer', { timeout: 30_000 }, async () => {
     it('navigates from design to about and back, preserving designer state', async () => {
       const page = await createPage(url('/'))
 
-      await page.getByTestId('picker-item').nth(1).click()
+      await page.getByRole('option').nth(1).click()
       const priceBeforeNav = await page.getByText('€').textContent()
 
       await page.getByRole('link', { name: 'About this project' }).click()
@@ -26,7 +26,7 @@ describe('Mini Designer', { timeout: 30_000 }, async () => {
     it('preserves designer state after navigating back from checkout', async () => {
       const page = await createPage(url('/'))
 
-      await page.getByTestId('picker-item').nth(1).click()
+      await page.getByRole('option').nth(1).click()
       await page.getByRole('link', { name: 'Go to Checkout' }).click()
       const totalText = await page.getByText('Total:').textContent()
 
@@ -83,7 +83,7 @@ describe('Mini Designer', { timeout: 30_000 }, async () => {
 
       await expect(page.getByRole('heading', { level: 1 })).toHaveText('Design your Shirt')
 
-      await expect(page.getByTestId('picker-item').first()).toBeVisible()
+      await expect(page.getByRole('option').first()).toBeVisible()
       await expect(page.getByText('€')).toBeVisible()
 
       await page.close()
@@ -113,12 +113,12 @@ describe('Mini Designer', { timeout: 30_000 }, async () => {
 
       const initialPrice = await page.getByText('€').textContent()
 
-      await page.getByTestId('picker-item').nth(1).click()
+      await page.getByRole('option').nth(1).click()
       const priceAfterFirstPick = await page.getByText('€').textContent()
 
       expect(priceAfterFirstPick).not.toBe(initialPrice)
 
-      await page.getByTestId('picker-item').first().click()
+      await page.getByRole('option').first().click()
       const priceAfterReset = await page.getByText('€').textContent()
 
       expect(priceAfterReset).toBe(initialPrice)
@@ -166,7 +166,7 @@ describe('Mini Designer', { timeout: 30_000 }, async () => {
       const page = await createPage(url('/'))
       const initialPrice = await page.getByText('€').textContent()
 
-      await page.getByTestId('picker-item').nth(1).click()
+      await page.getByRole('option').nth(1).click()
       await page.getByRole('link', { name: 'Go to Checkout' }).click()
       await page.getByLabel('Name').fill('Erika')
       await page.getByLabel('Address').fill('Goethestraße 10')
@@ -182,7 +182,7 @@ describe('Mini Designer', { timeout: 30_000 }, async () => {
       const page = await createPage(url('/'))
       const initialPrice = await page.getByText('€').textContent()
 
-      await page.getByTestId('picker-item').nth(1).click()
+      await page.getByRole('option').nth(1).click()
       await page.getByRole('link', { name: 'Go to Checkout' }).click()
       await page.getByLabel('Name').fill('Erika')
       await page.getByLabel('Address').fill('Goethestraße 10')
