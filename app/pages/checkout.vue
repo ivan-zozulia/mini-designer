@@ -66,10 +66,10 @@ async function submitOrder() {
             <p>Shirt: {{ designer.selectedColor?.name }}</p>
           </div>
         </div>
-        <div class="lg:w-1/3 border border-gray-200 rounded-xl p-6">
-          <h2 class="text-2xl font-light tracking-wide mb-6">
-            Order Data
-          </h2>
+        <ContentCard
+          title="Order Data"
+          class="lg:w-1/3"
+        >
           <div class="space-y-3">
             <div class="flex justify-between">
               <span class="font-semibold">Design:</span>
@@ -91,11 +91,11 @@ async function submitOrder() {
               formatCurrency(designer.totalPrice)
             }}</span>
           </div>
-        </div>
-        <div class="lg:w-1/3 border border-gray-200 rounded-xl p-6">
-          <h2 class="text-2xl font-light tracking-wide mb-6">
-            Personal Data
-          </h2>
+        </ContentCard>
+        <ContentCard
+          title="Personal Data"
+          class="lg:w-1/3"
+        >
           <p
             v-if="checkout.formError"
             class="text-red-500 text-sm mb-4"
@@ -137,7 +137,7 @@ async function submitOrder() {
               </button>
             </div>
           </form>
-        </div>
+        </ContentCard>
       </div>
     </main>
   </div>
