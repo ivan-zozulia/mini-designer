@@ -45,6 +45,7 @@ function scrollDown() {
         :key="offset + i"
         data-testid="picker-item"
         type="button"
+        :aria-selected="offset + i === selectedIndex"
         class="rounded-lg border-2 p-1 transition-colors"
         :class="offset + i === selectedIndex ? 'border-emerald-400' : 'border-transparent'"
         @click="emit('select', offset + i)"

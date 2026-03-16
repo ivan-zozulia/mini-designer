@@ -51,9 +51,11 @@ describe('TShirt', () => {
   })
 
   describe('ItemPicker', () => {
+    const items = ['A', 'B', 'C']
+
     it('emits select event on item click', async () => {
       const wrapper = await mountSuspended(ItemPicker, {
-        props: { items: ['A', 'B', 'C'], selectedIndex: 0 },
+        props: { items, selectedIndex: 0 },
       })
 
       const buttons = wrapper.findAll('[data-testid="picker-item"]')
@@ -61,6 +63,16 @@ describe('TShirt', () => {
 
       expect(wrapper.emitted('select')).toBeTruthy()
       expect(wrapper.emitted('select')?.[0]).toEqual([1])
+    })
+
+    it('highlights selected item', async () => {
+      const wrapper = await mountSuspended(ItemPicker, {
+        props: { items, selectedIndex: 1 },
+      })
+
+      const buttons = wrapper.findAll('[data-testid="picker-item"]')
+      expect(buttons[0]?.attributes('aria-selected')).toBe('false')
+      expect(buttons[1]?.attributes('aria-selected')).toBe('true')
     })
   })
 })
