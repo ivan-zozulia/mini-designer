@@ -10,4 +10,13 @@ describe('AppHeader', () => {
 
     expect(wrapper.find('h1').text()).toBe('Test Title')
   })
+
+  it('renders slot content', async () => {
+    const wrapper = await mountSuspended(AppHeader, {
+      props: { title: 'Title' },
+      slots: { default: '<button>Action</button>' },
+    })
+
+    expect(wrapper.find('button').text()).toBe('Action')
+  })
 })
