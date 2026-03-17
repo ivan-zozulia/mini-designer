@@ -2,7 +2,7 @@
 import { FetchError } from 'ofetch'
 import type { CheckoutForm, OrderErrorResponse } from '~/types'
 
-useHead({ title: 'Checkout' })
+useSeoMeta({ title: 'Checkout', description: 'Complete your order' })
 
 const designer = useDesignerStore()
 const checkout = useCheckoutStore()

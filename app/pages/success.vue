@@ -1,5 +1,5 @@
 <script setup lang="ts">
-useHead({ title: 'Success' })
+useSeoMeta({ title: 'Success', description: 'Your order has been placed successfully' })
 
 const designer = useDesignerStore()
 const checkout = useCheckoutStore()

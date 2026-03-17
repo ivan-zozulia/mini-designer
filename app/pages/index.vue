@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useMediaQuery } from '@vueuse/core'
 
-useHead({ title: 'Design your Shirt' })
+useSeoMeta({ title: 'Design your Shirt', description: 'Design Unix Classic Tee for yourself' })
 
 const designer = useDesignerStore()
 

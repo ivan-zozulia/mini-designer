@@ -1,5 +1,5 @@
 <script setup lang="ts">
-useHead({ title: 'About' })
+useSeoMeta({ title: 'About', description: 'Learn more about Mini Designer' })
 
 const router = useRouter()
 
