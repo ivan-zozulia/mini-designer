@@ -18,6 +18,11 @@ const visibleItems = computed(() => items.slice(offset.value, offset.value + vis
 const canScrollPrev = computed(() => offset.value > 0)
 const canScrollNext = computed(() => offset.value + visibleCount < items.length)
 
+function selectAt(index: number) {
+  selected.value = index
+  ensureVisible(index)
+}
+
 function ensureVisible(index: number) {
   if (index < offset.value) {
     offset.value = index
@@ -25,11 +30,6 @@ function ensureVisible(index: number) {
   else if (index >= offset.value + visibleCount) {
     offset.value = index - visibleCount + 1
   }
-}
-
-function selectAt(index: number) {
-  selected.value = index
-  ensureVisible(index)
 }
 
 function selectNext() {
@@ -73,7 +73,7 @@ function onKeydown(e: KeyboardEvent) {
       :disabled="!canScrollPrev"
       class="text-emerald-500 disabled:text-gray-300 transition-colors"
       tabindex="-1"
-      @click="offset--"
+      @click="selectPrev()"
     >
       <IconChevronUp
         class="size-8"
@@ -114,7 +114,7 @@ function onKeydown(e: KeyboardEvent) {
       :disabled="!canScrollNext"
       class="text-emerald-500 disabled:text-gray-300"
       tabindex="-1"
-      @click="offset++"
+      @click="selectNext()"
     >
       <IconChevronDown
         class="size-8"
