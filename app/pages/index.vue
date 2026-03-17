@@ -5,26 +5,32 @@ useSeoMeta({ title: 'Design your Shirt', description: 'Design Unix Classic Tee f
 
 const designer = useDesignerStore()
 
-const isMobile = useMediaQuery('(max-width: 767px)', {
-  ssrWidth: 768,
+const isCompact = useMediaQuery('(max-width: 639px)', {
+  ssrWidth: 640,
 })
 
-const orientation = computed(() => isMobile.value ? 'horizontal' : 'vertical')
-const visibleCount = computed(() => isMobile.value ? 3 : 4)
+definePageMeta({
+  hasFixedBar: true,
+})
+
+const orientation = computed(() => isCompact.value ? 'horizontal' : 'vertical')
+const visibleCount = computed(() => isCompact.value ? 3 : 4)
 </script>
 
 <template>
   <div>
     <AppHeader title="Design your Shirt">
-      <span class="text-xl font-semibold tabular-nums">{{
-        formatCurrency(designer.totalPrice)
-      }}</span>
-      <NuxtLink
-        to="/checkout"
-        class="bg-blue-700 hover:bg-blue-800 active:bg-blue-900 focus-visible:ring-2 focus-visible:ring-blue-300 focus-visible:outline-none text-white font-semibold px-6 py-2 rounded-full transition-colors"
-      >
-        Checkout
-      </NuxtLink>
+      <div class="fixed sm:static z-99 right-0 bottom-0 left-0 flex items-center justify-between gap-4 h-16 px-4 shadow-[0_-4px_6px_0_rgba(0,0,0,0.05)] sm:shadow-none bg-white sm:bg-transparent">
+        <span class="text-xl font-semibold tabular-nums">{{
+          formatCurrency(designer.totalPrice)
+        }}</span>
+        <NuxtLink
+          to="/checkout"
+          class="bg-blue-700 hover:bg-blue-800 active:bg-blue-900 focus-visible:ring-2 focus-visible:ring-blue-300 focus-visible:outline-none text-white font-semibold px-6 py-2 rounded-full transition-colors"
+        >
+          Checkout
+        </NuxtLink>
+      </div>
     </AppHeader>
     <main class="flex-1 flex flex-col md:flex-row items-center justify-center gap-4 p-4 md:p-8">
       <div class="shrink-0 order-2 md:order-1">
@@ -49,6 +55,12 @@ const visibleCount = computed(() => isMobile.value ? 3 : 4)
           :color="designer.selectedColor.color"
           :design-img="designer.selectedDesign.img"
         />
+        <div
+          class="mt-4 text-sm font-semibold text-center lg:text-left"
+        >
+          <div>Shirt: {{ designer.selectedColor?.name }}</div>
+          <div>Design: {{ designer.selectedDesign?.name }}</div>
+        </div>
       </div>
       <div class="shrink-0 order-3">
         <ListBox
