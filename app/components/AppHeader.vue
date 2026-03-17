@@ -27,14 +27,18 @@ const classNames = computed(() => ({
     class="h-0"
   />
   <header
-    class="flex items-center justify-between px-8 py-5 bg-white  sm:top-0 sm:z-99"
+    class="sm:top-0 sm:z-99 py-4 px-4 bg-white"
     :class="classNames"
   >
-    <h1 class="text-3xl font-semibold text-emerald-700">
-      {{ title }}
-    </h1>
-    <div class="flex items-center gap-4">
-      <slot />
+    <div class="max-w-7xl mx-auto">
+      <div class="flex justify-between items-center">
+        <h1 class="text-3xl font-semibold text-emerald-700">
+          {{ title }}
+        </h1>
+        <div class="flex items-center gap-4">
+          <slot />
+        </div>
+      </div>
     </div>
   </header>
 </template>
