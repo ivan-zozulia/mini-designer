@@ -52,8 +52,75 @@ async function submitOrder() {
       </NuxtLink>
     </AppHeader>
     <main class="flex-1 p-4 md:p-8">
-      <div class="flex flex-col lg:flex-row gap-8 max-w-6xl mx-auto">
-        <div class="lg:w-1/3">
+      <div class="flex flex-col md:flex-row gap-8 max-w-6xl mx-auto">
+        <div class="order-2 md:order-first">
+          <div>
+            <h2>Order Data</h2>
+            <div>
+              <div class="flex justify-between">
+                <span>Design:</span>
+                <span class="tabular-nums">{{
+                  formatCurrency(designer.selectedDesign?.price ?? 0)
+                }}</span>
+              </div>
+              <div class="flex justify-between">
+                <span>Shirt:</span>
+                <span class="tabular-nums">{{
+                  formatCurrency(designer.selectedColor?.price ?? 0)
+                }}</span>
+              </div>
+            </div>
+            <div class="flex justify-between">
+              <span>Total:</span>
+              <span class="tabular-nums">{{
+                formatCurrency(designer.totalPrice)
+              }}</span>
+            </div>
+          </div>
+          <div>
+            <h2>Personal Data</h2>
+            <p
+              v-if="checkout.formError"
+              class="text-red-500 text-sm mb-4"
+              aria-live="polite"
+            >
+              {{ checkout.formError }}
+            </p>
+            <form
+              class="space-y-4"
+              @submit.prevent="submitOrder"
+            >
+              <FormInput
+                id="order-name"
+                v-model="checkout.name"
+                label="Name"
+                type="text"
+                name="name"
+                autocomplete="name"
+                placeholder="Enter your name"
+                :errors="checkout.errors.name"
+              />
+              <FormInput
+                id="order-address"
+                v-model="checkout.address"
+                label="Address"
+                type="text"
+                name="address"
+                autocomplete="street-address"
+                placeholder="Enter your address"
+                :errors="checkout.errors.address"
+              />
+              <button
+                type="submit"
+                :disabled="isSubmitting"
+                class="block w-full bg-green-600 hover:bg-green-700 active:bg-green-800 focus-visible:ring-2 focus-visible:ring-green-300 focus-visible:outline-none text-white font-semibold px-12 py-2 rounded-full transition-colors disabled:opacity-50"
+              >
+                Buy
+              </button>
+            </form>
+          </div>
+        </div>
+        <div>
           <div class="max-w-xs mx-auto">
             <TShirt
               v-if="designer.selectedColor && designer.selectedDesign"
@@ -68,78 +135,6 @@ async function submitOrder() {
             <p>Shirt: {{ designer.selectedColor?.name }}</p>
           </div>
         </div>
-        <ContentCard
-          title="Order Data"
-          class="lg:w-1/3"
-        >
-          <div class="space-y-3">
-            <div class="flex justify-between">
-              <span class="font-semibold">Design:</span>
-              <span class="font-semibold tabular-nums">{{
-                formatCurrency(designer.selectedDesign?.price ?? 0)
-              }}</span>
-            </div>
-            <div class="flex justify-between">
-              <span class="font-semibold">Shirt:</span>
-              <span class="font-semibold tabular-nums">{{
-                formatCurrency(designer.selectedColor?.price ?? 0)
-              }}</span>
-            </div>
-          </div>
-          <hr class="my-6">
-          <div class="flex justify-between">
-            <span class="text-xl font-semibold">Total:</span>
-            <span class="text-xl font-semibold tabular-nums">{{
-              formatCurrency(designer.totalPrice)
-            }}</span>
-          </div>
-        </ContentCard>
-        <ContentCard
-          title="Personal Data"
-          class="lg:w-1/3"
-        >
-          <p
-            v-if="checkout.formError"
-            class="text-red-500 text-sm mb-4"
-            aria-live="polite"
-          >
-            {{ checkout.formError }}
-          </p>
-          <form
-            class="space-y-4"
-            @submit.prevent="submitOrder"
-          >
-            <FormInput
-              id="order-name"
-              v-model="checkout.name"
-              label="Name"
-              type="text"
-              name="name"
-              autocomplete="name"
-              placeholder="Enter your name"
-              :errors="checkout.errors.name"
-            />
-            <FormInput
-              id="order-address"
-              v-model="checkout.address"
-              label="Address"
-              type="text"
-              name="address"
-              autocomplete="street-address"
-              placeholder="Enter your address"
-              :errors="checkout.errors.address"
-            />
-            <div class="pt-4 flex justify-end">
-              <button
-                type="submit"
-                :disabled="isSubmitting"
-                class="bg-green-600 hover:bg-green-700 active:bg-green-800 focus-visible:ring-2 focus-visible:ring-green-300 focus-visible:outline-none text-white font-semibold px-12 py-2 rounded-full transition-colors disabled:opacity-50"
-              >
-                Buy
-              </button>
-            </div>
-          </form>
-        </ContentCard>
       </div>
     </main>
   </div>
