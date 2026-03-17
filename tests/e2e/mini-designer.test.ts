@@ -27,11 +27,11 @@ describe('Mini Designer', { timeout: 30_000 }, async () => {
       const page = await createPage(url('/'))
 
       await page.getByRole('option').nth(1).click()
-      await page.getByRole('link', { name: 'Go to Checkout' }).click()
+      await page.getByRole('link', { name: 'Checkout' }).click()
       const totalText = await page.getByText('Total:').textContent()
 
       await page.getByRole('link', { name: 'Back' }).click()
-      await page.getByRole('link', { name: 'Go to Checkout' }).click()
+      await page.getByRole('link', { name: 'Checkout' }).click()
 
       await expect(page.getByText('Total:')).toHaveText(totalText!)
 
@@ -41,7 +41,7 @@ describe('Mini Designer', { timeout: 30_000 }, async () => {
     it('navigates from checkout to about and back, preserving checkout state', async () => {
       const page = await createPage(url('/'))
 
-      await page.getByRole('link', { name: 'Go to Checkout' }).click()
+      await page.getByRole('link', { name: 'Checkout' }).click()
       await expect(page).toHaveURL(/\/checkout$/)
 
       await page.getByLabel('Name').fill('Erika')
@@ -62,7 +62,7 @@ describe('Mini Designer', { timeout: 30_000 }, async () => {
     it('navigates from success to design via "Design another product"', async () => {
       const page = await createPage(url('/'))
 
-      await page.getByRole('link', { name: 'Go to Checkout' }).click()
+      await page.getByRole('link', { name: 'Checkout' }).click()
       await page.getByLabel('Name').fill('Erika')
       await page.getByLabel('Address').fill('Goethestraße 10')
       await page.getByRole('button', { name: 'Buy' }).click()
@@ -131,7 +131,7 @@ describe('Mini Designer', { timeout: 30_000 }, async () => {
     it('submits order and shows success page', async () => {
       const page = await createPage(url('/'))
 
-      await page.getByRole('link', { name: 'Go to Checkout' }).click()
+      await page.getByRole('link', { name: 'Checkout' }).click()
       await expect(page).toHaveURL(/\/checkout$/)
       await expect(page.getByText('Total:')).toBeVisible()
 
@@ -147,7 +147,7 @@ describe('Mini Designer', { timeout: 30_000 }, async () => {
 
     it('shows form error message and field errors on invalid submit', async () => {
       const page = await createPage(url('/'))
-      await page.getByRole('link', { name: 'Go to Checkout' }).click()
+      await page.getByRole('link', { name: 'Checkout' }).click()
 
       await page.getByRole('button', { name: 'Buy' }).click()
 
@@ -167,7 +167,7 @@ describe('Mini Designer', { timeout: 30_000 }, async () => {
       const initialPrice = await page.getByText('€').textContent()
 
       await page.getByRole('option').nth(1).click()
-      await page.getByRole('link', { name: 'Go to Checkout' }).click()
+      await page.getByRole('link', { name: 'Checkout' }).click()
       await page.getByLabel('Name').fill('Erika')
       await page.getByLabel('Address').fill('Goethestraße 10')
       await page.getByRole('button', { name: 'Buy' }).click()
@@ -183,7 +183,7 @@ describe('Mini Designer', { timeout: 30_000 }, async () => {
       const initialPrice = await page.getByText('€').textContent()
 
       await page.getByRole('option').nth(1).click()
-      await page.getByRole('link', { name: 'Go to Checkout' }).click()
+      await page.getByRole('link', { name: 'Checkout' }).click()
       await page.getByLabel('Name').fill('Erika')
       await page.getByLabel('Address').fill('Goethestraße 10')
       await page.getByRole('button', { name: 'Buy' }).click()
