@@ -5,7 +5,10 @@ useSeoMeta({ title: 'Design your Shirt', description: 'Design Unix Classic Tee f
 
 const designer = useDesignerStore()
 
-const isMobile = useMediaQuery('(max-width: 767px)')
+const isMobile = useMediaQuery('(max-width: 767px)', {
+  ssrWidth: 768,
+})
+
 const orientation = computed(() => isMobile.value ? 'horizontal' : 'vertical')
 const visibleCount = computed(() => isMobile.value ? 3 : 4)
 </script>
