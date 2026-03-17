@@ -12,7 +12,7 @@ defineSlots<{
 
 const selected = defineModel<number>({ required: true })
 const offset = ref(0)
-const highlightedIndex = ref(-1)
+const isKeyboardNav = ref(false)
 
 const visibleItems = computed(() => items.slice(offset.value, offset.value + visibleCount))
 const canScrollPrev = computed(() => offset.value > 0)
@@ -27,30 +27,21 @@ function ensureVisible(index: number) {
   }
 }
 
+function selectAt(index: number) {
+  selected.value = index
+  ensureVisible(index)
+}
+
 function selectNext() {
-  if (highlightedIndex.value < items.length - 1) {
-    highlightedIndex.value++
-    selected.value = highlightedIndex.value
-    ensureVisible(highlightedIndex.value)
+  if (selected.value < items.length - 1) {
+    selectAt(selected.value + 1)
   }
 }
 
 function selectPrev() {
-  if (highlightedIndex.value > 0) {
-    highlightedIndex.value--
-    selected.value = highlightedIndex.value
-    ensureVisible(highlightedIndex.value)
+  if (selected.value > 0) {
+    selectAt(selected.value - 1)
   }
-}
-
-function onFocus() {
-  if (highlightedIndex.value === -1) {
-    highlightedIndex.value = selected.value
-  }
-}
-
-function onBlur() {
-  highlightedIndex.value = -1
 }
 
 function onKeydown(e: KeyboardEvent) {
@@ -59,17 +50,14 @@ function onKeydown(e: KeyboardEvent) {
 
   if (e.key === nextKey) {
     e.preventDefault()
+    isKeyboardNav.value = true
     selectNext()
   }
   else if (e.key === prevKey) {
     e.preventDefault()
+    isKeyboardNav.value = true
     selectPrev()
   }
-}
-
-function selectItem(index: number) {
-  selected.value = index
-  highlightedIndex.value = index
 }
 </script>
 
@@ -98,9 +86,9 @@ function selectItem(index: number) {
       tabindex="0"
       class="flex gap-3 outline-none"
       :class="orientation === 'horizontal' ? 'flex-row' : 'flex-col'"
-      @focus="onFocus"
-      @blur="onBlur"
       @keydown="onKeydown"
+      @focus="isKeyboardNav = ($event.target as HTMLElement).matches(':focus-visible') ?? false"
+      @blur="isKeyboardNav = false"
     >
       <div
         v-for="(item, i) in visibleItems"
@@ -108,10 +96,13 @@ function selectItem(index: number) {
         role="option"
         :aria-label="item.name"
         :aria-selected="offset + i === selected"
-        :data-highlighted="highlightedIndex === offset + i ? '' : undefined"
-        class="rounded-lg border-2 p-1 cursor-pointer data-highlighted:ring-2 data-highlighted:ring-emerald-300"
-        :class="offset + i === selected ? 'border-emerald-400' : 'border-transparent'"
-        @click="selectItem(offset + i)"
+        class="rounded-lg border-2 p-1 cursor-pointer"
+        :class="[
+          offset + i === selected ? 'border-emerald-400' : 'border-transparent',
+          offset + i === selected && isKeyboardNav ? 'ring-2 ring-emerald-300' : '',
+        ]"
+        @pointerdown="isKeyboardNav = false"
+        @click="selected = offset + i"
       >
         <slot :item="item" />
       </div>

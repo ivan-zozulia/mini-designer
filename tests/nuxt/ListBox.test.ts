@@ -41,10 +41,6 @@ describe('Vertical ListBox', () => {
     expect(wrapper.emitted('update:modelValue')?.[0]).toEqual([2])
   })
 
-  it('should highlight selected item on focus', () => {
-    expect(options[0]?.attributes('data-highlighted')).toBe('')
-  })
-
   it('should select on arrow key', async () => {
     await listbox.trigger('keydown', { key: 'ArrowDown' })
     expect(wrapper.emitted('update:modelValue')?.[0]).toEqual([1])
