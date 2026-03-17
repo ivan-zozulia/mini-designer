@@ -20,7 +20,7 @@ const visibleCount = computed(() => isCompact.value ? 3 : 4)
 <template>
   <div>
     <AppHeader title="Design your Shirt">
-      <div class="fixed sm:static z-99 right-0 bottom-0 left-0 flex items-center justify-between gap-4 h-16 px-4 shadow-[0_-4px_6px_0_rgba(0,0,0,0.05)] sm:shadow-none bg-white sm:bg-transparent">
+      <div class="fixed sm:static z-100 right-0 bottom-0 left-0 flex items-center justify-between gap-4 h-16 px-4 shadow-[0_-4px_6px_0_rgba(0,0,0,0.05)] sm:shadow-none bg-white sm:bg-transparent">
         <span class="text-xl font-semibold tabular-nums">{{
           formatCurrency(designer.totalPrice)
         }}</span>

@@ -11,7 +11,7 @@ const isCompact = useMediaQuery('(max-width: 639px)', {
   <div class="min-h-screen flex flex-col">
     <slot />
     <footer
-      class="bg-slate-200 px-8 py-5 mt-auto"
+      class="px-8 py-5 mt-auto"
       :class="{ 'mb-16': route.meta.hasFixedBar && isCompact }"
     >
       <NuxtLink
