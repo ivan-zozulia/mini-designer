@@ -23,7 +23,7 @@ const visibleCount = computed(() => isMobile.value ? 3 : 4)
         to="/checkout"
         class="bg-blue-700 hover:bg-blue-800 active:bg-blue-900 focus-visible:ring-2 focus-visible:ring-blue-300 focus-visible:outline-none text-white font-semibold px-6 py-2 rounded-full transition-colors"
       >
-        Go to Checkout
+        Checkout
       </NuxtLink>
     </AppHeader>
     <main class="flex-1 flex flex-col md:flex-row items-center justify-center gap-4 p-4 md:p-8">
