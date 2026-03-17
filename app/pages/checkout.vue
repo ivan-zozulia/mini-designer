@@ -2,6 +2,8 @@
 import { FetchError } from 'ofetch'
 import type { CheckoutForm, OrderErrorResponse } from '~/types'
 
+useHead({ title: 'Checkout' })
+
 const designer = useDesignerStore()
 const checkout = useCheckoutStore()
 const isSubmitting = ref(false)

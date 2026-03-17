@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { useMediaQuery } from '@vueuse/core'
 
+useHead({ title: 'Design your Shirt' })
+
 const designer = useDesignerStore()
 
 const isMobile = useMediaQuery('(max-width: 767px)')

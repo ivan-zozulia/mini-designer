@@ -1,4 +1,6 @@
 <script setup lang="ts">
+useHead({ title: 'Success' })
+
 const designer = useDesignerStore()
 const checkout = useCheckoutStore()
 
