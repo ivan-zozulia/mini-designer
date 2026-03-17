@@ -28,7 +28,7 @@ function designAnother() {
         Thank you for your order.
       </h2>
       <button
-        class="bg-blue-500 hover:bg-blue-600 active:bg-blue-700 focus-visible:ring-2 focus-visible:ring-blue-300 focus-visible:outline-none text-white font-semibold px-6 py-2 rounded-full transition-colors"
+        class="bg-blue-700 hover:bg-blue-800 active:bg-blue-900 focus-visible:ring-2 focus-visible:ring-blue-300 focus-visible:outline-none text-white font-semibold px-6 py-2 rounded-full transition-colors"
         @click="designAnother"
       >
         Design another product

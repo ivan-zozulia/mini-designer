@@ -133,7 +133,7 @@ async function submitOrder() {
               <button
                 type="submit"
                 :disabled="isSubmitting"
-                class="bg-green-400 hover:bg-green-500 active:bg-green-600 focus-visible:ring-2 focus-visible:ring-green-300 focus-visible:outline-none text-white font-semibold px-12 py-2 rounded-full transition-colors disabled:opacity-50"
+                class="bg-green-600 hover:bg-green-700 active:bg-green-800 focus-visible:ring-2 focus-visible:ring-green-300 focus-visible:outline-none text-white font-semibold px-12 py-2 rounded-full transition-colors disabled:opacity-50"
               >
                 Buy
               </button>

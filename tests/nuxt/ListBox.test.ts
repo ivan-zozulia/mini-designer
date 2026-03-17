@@ -6,7 +6,7 @@ import ListBox from '~/components/ListBox.vue'
 describe('Empty ListBox', () => {
   it('should render no items and disable both buttons', async () => {
     const wrapper = await mountSuspended(ListBox, {
-      props: { items: [], modelValue: 0 },
+      props: { items: [], modelValue: 0, label: 'Product color' },
     })
     expect(wrapper.findAll('[role=option]')).toHaveLength(0)
     expect(wrapper.find('[data-testid="scroll-prev"]').attributes('disabled')).toBeDefined()
@@ -15,14 +15,21 @@ describe('Empty ListBox', () => {
 })
 
 describe('Vertical ListBox', () => {
-  const items = ['A', 'B', 'C', 'D', 'E', 'F']
+  const items = [
+    { name: 'A' },
+    { name: 'B' },
+    { name: 'C' },
+    { name: 'D' },
+    { name: 'E' },
+    { name: 'F' },
+  ]
   let wrapper: VueWrapper
   let listbox: DOMWrapper<Element>
   let options: DOMWrapper<Element>[]
 
   beforeEach(async () => {
     wrapper = await mountSuspended(ListBox, {
-      props: { items, modelValue: 0 },
+      props: { items, modelValue: 0, label: 'Product color' },
     })
     listbox = wrapper.find('[role=listbox]')
     options = wrapper.findAll('[role=option]')
@@ -50,7 +57,12 @@ describe('Vertical ListBox', () => {
 describe('Horizontal ListBox', () => {
   it('should navigate with right and left arrows', async () => {
     const wrapper = await mountSuspended(ListBox, {
-      props: { items: ['A', 'B', 'C', 'D', 'E', 'F'], modelValue: 0, orientation: 'horizontal' },
+      props: {
+        items: [{ name: 'A' }, { name: 'B' }, { name: 'C' }, { name: 'D' }, { name: 'E' }, { name: 'F' }],
+        modelValue: 0,
+        orientation: 'horizontal',
+        label: 'Product color',
+      },
     })
     const listbox = wrapper.find('[role=listbox]')
     await listbox.trigger('focus')
