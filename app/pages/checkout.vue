@@ -28,7 +28,6 @@ async function submitOrder() {
     navigateTo('/success')
   }
   catch (e: unknown) {
-    // https://github.com/unjs/ofetch?tab=readme-ov-file#%EF%B8%8F-handling-errors
     if (e instanceof FetchError && isOrderErrorResponse(e.data)) {
       const data = e.data
       checkout.errors = data.errors
