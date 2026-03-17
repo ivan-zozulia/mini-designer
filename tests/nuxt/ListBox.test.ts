@@ -45,12 +45,9 @@ describe('Vertical ListBox', () => {
     expect(options[0]?.attributes('data-highlighted')).toBe('')
   })
 
-  it('should navigate and select with arrows and enter', async () => {
+  it('should select on arrow key', async () => {
     await listbox.trigger('keydown', { key: 'ArrowDown' })
-    await listbox.trigger('keydown', { key: 'ArrowDown' })
-    await listbox.trigger('keydown', { key: 'Enter' })
-
-    expect(wrapper.emitted('update:modelValue')?.[0]).toEqual([2])
+    expect(wrapper.emitted('update:modelValue')?.[0]).toEqual([1])
   })
 })
 
@@ -67,9 +64,6 @@ describe('Horizontal ListBox', () => {
     const listbox = wrapper.find('[role=listbox]')
     await listbox.trigger('focus')
     await listbox.trigger('keydown', { key: 'ArrowRight' })
-    await listbox.trigger('keydown', { key: 'ArrowRight' })
-    await listbox.trigger('keydown', { key: 'Enter' })
-
-    expect(wrapper.emitted('update:modelValue')?.[0]).toEqual([2])
+    expect(wrapper.emitted('update:modelValue')?.[0]).toEqual([1])
   })
 })

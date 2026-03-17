@@ -27,16 +27,18 @@ function ensureVisible(index: number) {
   }
 }
 
-function highlightNext() {
+function selectNext() {
   if (highlightedIndex.value < items.length - 1) {
     highlightedIndex.value++
+    selected.value = highlightedIndex.value
     ensureVisible(highlightedIndex.value)
   }
 }
 
-function highlightPrev() {
+function selectPrev() {
   if (highlightedIndex.value > 0) {
     highlightedIndex.value--
+    selected.value = highlightedIndex.value
     ensureVisible(highlightedIndex.value)
   }
 }
@@ -57,17 +59,11 @@ function onKeydown(e: KeyboardEvent) {
 
   if (e.key === nextKey) {
     e.preventDefault()
-    highlightNext()
+    selectNext()
   }
   else if (e.key === prevKey) {
     e.preventDefault()
-    highlightPrev()
-  }
-  else if (e.key === 'Enter' || e.key === ' ') {
-    e.preventDefault()
-    if (highlightedIndex.value >= 0) {
-      selected.value = highlightedIndex.value
-    }
+    selectPrev()
   }
 }
 
@@ -113,7 +109,7 @@ function selectItem(index: number) {
         :aria-label="item.name"
         :aria-selected="offset + i === selected"
         :data-highlighted="highlightedIndex === offset + i ? '' : undefined"
-        class="rounded-lg border-2 p-1 transition-colors cursor-pointer data-highlighted:ring-2 data-highlighted:ring-emerald-300"
+        class="rounded-lg border-2 p-1 cursor-pointer data-highlighted:ring-2 data-highlighted:ring-emerald-300"
         :class="offset + i === selected ? 'border-emerald-400' : 'border-transparent'"
         @click="selectItem(offset + i)"
       >
@@ -125,7 +121,7 @@ function selectItem(index: number) {
       aria-label="Scroll to next"
       type="button"
       :disabled="!canScrollNext"
-      class="text-emerald-500 disabled:text-gray-300 transition-colors"
+      class="text-emerald-500 disabled:text-gray-300"
       tabindex="-1"
       @click="offset++"
     >
