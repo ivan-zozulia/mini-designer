@@ -28,6 +28,7 @@ const visibleCount = computed(() => isMobile.value ? 3 : 4)
         <ListBox
           v-model="designer.selectedColorIndex"
           :items="designer.colors"
+          label="Product color"
           :orientation="orientation"
           :visible-count="visibleCount"
         >
@@ -50,6 +51,7 @@ const visibleCount = computed(() => isMobile.value ? 3 : 4)
         <ListBox
           v-model="designer.selectedDesignIndex"
           :items="designer.designs"
+          label="Product design"
           :orientation="orientation"
           :visible-count="visibleCount"
         >

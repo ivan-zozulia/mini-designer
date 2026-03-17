@@ -1,8 +1,9 @@
-<script setup lang="ts" generic="T">
-const { items, orientation = 'vertical', visibleCount = 4 } = defineProps<{
+<script setup lang="ts" generic="T extends { name: string }">
+const { items, orientation = 'vertical', visibleCount = 4, label } = defineProps<{
   items: T[]
   orientation?: 'vertical' | 'horizontal'
   visibleCount?: number
+  label: string
 }>()
 
 defineSlots<{
@@ -97,6 +98,7 @@ function selectItem(index: number) {
     </button>
     <div
       role="listbox"
+      :aria-label="label"
       tabindex="0"
       class="flex gap-3 outline-none"
       :class="orientation === 'horizontal' ? 'flex-row' : 'flex-col'"
@@ -108,6 +110,7 @@ function selectItem(index: number) {
         v-for="(item, i) in visibleItems"
         :key="offset + i"
         role="option"
+        :aria-label="item.name"
         :aria-selected="offset + i === selected"
         :data-highlighted="highlightedIndex === offset + i ? '' : undefined"
         class="rounded-lg border-2 p-1 transition-colors cursor-pointer data-highlighted:ring-2 data-highlighted:ring-emerald-300"
