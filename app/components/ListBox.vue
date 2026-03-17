@@ -96,11 +96,9 @@ function onKeydown(e: KeyboardEvent) {
         role="option"
         :aria-label="item.name"
         :aria-selected="offset + i === selected"
-        class="rounded-lg border-2 p-1 cursor-pointer"
-        :class="[
-          offset + i === selected ? 'border-emerald-400' : 'border-transparent',
-          offset + i === selected && isKeyboardNav ? 'ring-2 ring-emerald-300' : '',
-        ]"
+        class="group"
+        :data-selected="offset + i === selected ? '' : undefined"
+        :data-highlighted="offset + i === selected && isKeyboardNav ? '' : undefined"
         @pointerdown="isKeyboardNav = false"
         @click="selected = offset + i"
       >

@@ -43,7 +43,7 @@ const visibleCount = computed(() => isCompact.value ? 3 : 4)
         >
           <template #default="{ item }">
             <div
-              class="size-12 rounded-full"
+              class="size-12 rounded-full cursor-pointer border-2 border-transparent group-data-selected:border-emerald-400 group-data-highlighted:ring-2 group-data-highlighted:ring-emerald-300"
               :style="{ backgroundColor: item.color }"
             />
           </template>
@@ -76,7 +76,7 @@ const visibleCount = computed(() => isCompact.value ? 3 : 4)
               :alt="item.name"
               width="48"
               height="48"
-              class="size-12 object-cover rounded"
+              class="size-12 object-cover rounded cursor-pointer border-2 border-transparent group-data-selected:border-emerald-400 group-data-highlighted:ring-2 group-data-highlighted:ring-emerald-300"
             >
           </template>
         </ListBox>
