@@ -32,7 +32,7 @@ const visibleCount = computed(() => isCompact.value ? 3 : 4)
         </NuxtLink>
       </div>
     </AppHeader>
-    <main class="flex-1 flex flex-col md:flex-row items-center justify-center gap-4 p-4 md:p-8">
+    <main class="flex-1 flex flex-col sm:flex-row items-center justify-center gap-4 p-4 sm:p-8">
       <div class="shrink-0 order-2 md:order-1">
         <ListBox
           v-model="designer.selectedColorIndex"
@@ -49,7 +49,7 @@ const visibleCount = computed(() => isCompact.value ? 3 : 4)
           </template>
         </ListBox>
       </div>
-      <div class="flex-1 max-w-md mx-auto order-1 md:order-2">
+      <div class="flex-1 max-w-md order-1 sm:order-2 flex flex-col items-center">
         <TShirt
           v-if="designer.selectedColor && designer.selectedDesign"
           :color="designer.selectedColor.color"

@@ -8,7 +8,7 @@ const isCompact = useMediaQuery('(max-width: 639px)', {
 </script>
 
 <template>
-  <div class="min-h-screen flex flex-col bg-white">
+  <div class="min-h-screen flex flex-col">
     <slot />
     <footer
       class="bg-slate-200 px-8 py-5 mt-auto"

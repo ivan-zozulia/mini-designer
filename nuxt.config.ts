@@ -2,7 +2,7 @@ import tailwindcss from '@tailwindcss/vite'
 
 export default defineNuxtConfig({
   modules: ['@nuxt/eslint', '@pinia/nuxt'],
-  devtools: { enabled: true },
+  devtools: { enabled: false },
   app: {
     head: {
       titleTemplate: '%s | Mini Designer',
