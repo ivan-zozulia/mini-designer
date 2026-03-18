@@ -3,7 +3,7 @@ import { useMediaQuery } from '@vueuse/core'
 
 const route = useRoute()
 const isCompact = useMediaQuery('(max-width: 639px)', {
-  ssrWidth: 640,
+  ssrWidth: 639,
 })
 </script>
 

@@ -6,7 +6,7 @@ useSeoMeta({ title: 'Design your Shirt', description: 'Design Unix Classic Tee f
 const designer = useDesignerStore()
 
 const isCompact = useMediaQuery('(max-width: 639px)', {
-  ssrWidth: 640,
+  ssrWidth: 639,
 })
 
 definePageMeta({
