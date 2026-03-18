@@ -243,7 +243,7 @@ const shadows = computed(() => shadowColors(props.color))
       alt="Design"
       width="156"
       height="174"
-      class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[80%] w-[30%] h-[30%] object-contain pointer-events-none"
+      class="absolute top-[28%] left-1/2 -translate-x-1/2 w-9/25 aspect-4/3 object-cover rounded-[9%/12%] pointer-events-none"
     >
   </div>
 </template>
