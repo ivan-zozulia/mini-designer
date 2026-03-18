@@ -40,7 +40,7 @@ describe('Designer store', () => {
     const store = useDesignerStore()
     await store.fetchData()
 
-    store.selectedColorIndex = 2
+    store.selectedColor = store.colors[2]
 
     expect(store.selectedColor).toEqual(mockColors[2])
   })
@@ -49,7 +49,7 @@ describe('Designer store', () => {
     const store = useDesignerStore()
     await store.fetchData()
 
-    store.selectedDesignIndex = 1
+    store.selectedDesign = store.designs[1]
 
     expect(store.selectedDesign).toEqual(mockDesigns[1])
   })
@@ -60,10 +60,10 @@ describe('Designer store', () => {
 
     expect(store.totalPrice).toBe(mockColors[0].price + mockDesigns[0].price)
 
-    store.selectedColorIndex = 1
+    store.selectedColor = store.colors[1]
     expect(store.totalPrice).toBe(mockColors[1].price + mockDesigns[0].price)
 
-    store.selectedDesignIndex = 1
+    store.selectedDesign = store.designs[1]
     expect(store.totalPrice).toBe(mockColors[1].price + mockDesigns[1].price)
   })
 
@@ -71,8 +71,8 @@ describe('Designer store', () => {
     const store = useDesignerStore()
     await store.fetchData()
 
-    store.selectedColorIndex = 2
-    store.selectedDesignIndex = 1
+    store.selectedColor = store.colors[2]
+    store.selectedDesign = store.designs[1]
     store.$reset()
 
     expect(store.selectedColor).toEqual(mockColors[0])

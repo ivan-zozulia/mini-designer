@@ -34,40 +34,37 @@ const visibleCount = computed(() => isCompact.value ? 3 : 4)
     </AppHeader>
     <main class="flex-1 flex flex-col sm:flex-row items-center justify-center gap-4 p-4 sm:p-8">
       <div class="shrink-0 order-2 md:order-1">
-        <ListBox
-          v-model="designer.selectedColorIndex"
+        <DesignListbox
+          v-if="designer.selectedColor"
+          v-model="designer.selectedColor"
           :items="designer.colors"
           label="Product color"
           :orientation="orientation"
           :visible-count="visibleCount"
         >
           <template #default="{ item }">
-            <div
-              class="size-12 flex items-center justify-center rounded-lg cursor-pointer group-data-highlighted:ring-2"
+            <svg
+              viewBox="0 0 36 36"
+              class="size-9"
+              :aria-label="item.name"
             >
-              <svg
-                viewBox="0 0 36 36"
-                class="size-9"
-                :aria-label="item.name"
-              >
-                <g transform="translate(18 18)">
-                  <circle
-                    r="12"
-                    :fill="item.color"
-                    class="stroke-neutral-500"
-                    stroke-width="1"
-                  />
-                  <circle
-                    r="16"
-                    fill="none"
-                    class="group-data-selected:stroke-blue-700"
-                    stroke-width="2"
-                  />
-                </g>
-              </svg>
-            </div>
+              <g transform="translate(18 18)">
+                <circle
+                  r="12"
+                  :fill="item.color"
+                  class="stroke-neutral-500"
+                  stroke-width="1"
+                />
+                <circle
+                  r="16"
+                  fill="none"
+                  class="group-data-selected:stroke-blue-700"
+                  stroke-width="2"
+                />
+              </g>
+            </svg>
           </template>
-        </ListBox>
+        </DesignListbox>
       </div>
       <div class="flex-1 max-w-md order-1 sm:order-2 flex flex-col items-center">
         <TShirt
@@ -84,27 +81,26 @@ const visibleCount = computed(() => isCompact.value ? 3 : 4)
         </div>
       </div>
       <div class="shrink-0 order-3">
-        <ListBox
-          v-model="designer.selectedDesignIndex"
+        <DesignListbox
+          v-if="designer.selectedDesign"
+          v-model="designer.selectedDesign"
           :items="designer.designs"
           label="Product design"
           :orientation="orientation"
           :visible-count="visibleCount"
         >
           <template #default="{ item }">
-            <div class="size-12 flex items-center justify-center rounded-lg cursor-pointer group-data-highlighted:ring-2">
-              <div class="rounded-[11%/15%] p-0.5 border-2 border-transparent group-data-selected:border-blue-700">
-                <img
-                  :src="item.img"
-                  :alt="item.name"
-                  width="36"
-                  height="27"
-                  class="block w-9 aspect-4/3 object-cover rounded-[11%/15%] border border-neutral-500"
-                >
-              </div>
+            <div class="rounded-[11%/15%] p-0.5 border-2 border-transparent group-data-selected:border-blue-700">
+              <img
+                :src="item.img"
+                :alt="item.name"
+                width="36"
+                height="27"
+                class="block w-9 aspect-4/3 object-cover rounded-[11%/15%] border border-neutral-500"
+              >
             </div>
           </template>
-        </ListBox>
+        </DesignListbox>
       </div>
     </main>
   </div>
