@@ -12,7 +12,7 @@ const shadows = computed(() => shadowColors(props.color))
 
 <template>
   <div
-    class="relative inline-flex"
+    class="relative"
     :style="{ color }"
   >
     <svg

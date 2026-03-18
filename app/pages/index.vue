@@ -50,20 +50,7 @@ const visibleCount = computed(() => isCompact.value ? 3 : 4)
           </template>
         </DesignListbox>
       </div>
-      <div class="flex-1 max-w-md order-1 sm:order-2 flex flex-col items-center">
-        <TShirt
-          v-if="designer.selectedColor && designer.selectedDesign"
-          :color="designer.selectedColor.color"
-          :design-img="designer.selectedDesign.img"
-          :design-name="designer.selectedDesign.name"
-        />
-        <div
-          class="mt-4 text-sm font-semibold text-center lg:text-left"
-        >
-          <div>Shirt: {{ designer.selectedColor?.name }}</div>
-          <div>Design: {{ designer.selectedDesign?.name }}</div>
-        </div>
-      </div>
+      <ProductPreview class="flex-1 max-w-md order-1 sm:order-2" />
       <div class="shrink-0 order-3">
         <DesignListbox
           v-if="designer.selectedDesign"

@@ -6,6 +6,7 @@ useSeoMeta({ title: 'Checkout', description: 'Complete your order' })
 
 const designer = useDesignerStore()
 const checkout = useCheckoutStore()
+
 const isSubmitting = ref(false)
 
 function isOrderErrorResponse(data: unknown): data is OrderErrorResponse {
@@ -119,22 +120,7 @@ async function submitOrder() {
             </form>
           </div>
         </div>
-        <div>
-          <div class="max-w-xs mx-auto">
-            <TShirt
-              v-if="designer.selectedColor && designer.selectedDesign"
-              :color="designer.selectedColor.color"
-              :design-img="designer.selectedDesign.img"
-              :design-name="designer.selectedDesign.name"
-            />
-          </div>
-          <div
-            class="mt-4 text-sm font-semibold text-center lg:text-left"
-          >
-            <p>Design: {{ designer.selectedDesign?.name }}</p>
-            <p>Shirt: {{ designer.selectedColor?.name }}</p>
-          </div>
-        </div>
+        <ProductPreview />
       </div>
     </main>
   </div>
