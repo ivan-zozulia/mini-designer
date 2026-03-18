@@ -22,9 +22,11 @@ const model = defineModel<string>({ required: true })
       v-bind="$attrs"
       class="w-full mt-2 rounded-md px-3 py-2 outline-1 outline-gray-300 bg-white focus:outline-2 focus:-outline-offset-2 focus:outline-blue-700  aria-invalid:outline-red-500 aria-invalid:focus:outline-red-500"
       :aria-invalid="!!errors?.length"
+      :aria-describedby="errors?.length ? `${id}-errors` : undefined"
     >
     <div
       v-if="errors?.length"
+      :id="`${id}-errors`"
       aria-live="polite"
     >
       <p
