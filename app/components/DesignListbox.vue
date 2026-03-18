@@ -19,11 +19,11 @@ const modelValue = defineModel<T>({ required: true })
     :label="label"
     :orientation="orientation"
     :visible-count="visibleCount"
-    class="items-center gap-2"
+    class="items-center"
   >
-    <ListboxPrev class="text-emerald-500 disabled:text-gray-300 transition-colors">
-      <IconChevronUp
-        class="size-8"
+    <ListboxPrev class="size-12 flex items-center justify-center cursor-pointer text-gray-700 disabled:text-gray-300 disabled:cursor-default">
+      <IconChevron
+        class="size-4"
         :class="orientation === 'horizontal' ? '-rotate-90' : ''"
       />
     </ListboxPrev>
@@ -37,10 +37,10 @@ const modelValue = defineModel<T>({ required: true })
         <slot :item="item" />
       </ListboxItem>
     </ListboxContent>
-    <ListboxNext class="text-emerald-500 disabled:text-gray-300 transition-colors">
-      <IconChevronDown
-        class="size-8"
-        :class="orientation === 'horizontal' ? '-rotate-90' : ''"
+    <ListboxNext class="size-12 flex items-center justify-center cursor-pointer text-gray-700 disabled:text-gray-300 disabled:cursor-default">
+      <IconChevron
+        class="size-4"
+        :class="orientation === 'horizontal' ? '-rotate-270' : '-rotate-180'"
       />
     </ListboxNext>
   </ListboxRoot>

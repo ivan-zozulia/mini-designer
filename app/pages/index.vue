@@ -14,7 +14,6 @@ definePageMeta({
 })
 
 const orientation = computed(() => isCompact.value ? 'horizontal' : 'vertical')
-const visibleCount = computed(() => isCompact.value ? 3 : 4)
 </script>
 
 <template>
@@ -40,7 +39,6 @@ const visibleCount = computed(() => isCompact.value ? 3 : 4)
           :items="designer.colors"
           label="Product color"
           :orientation="orientation"
-          :visible-count="visibleCount"
         >
           <template #default="{ item }">
             <ColorSwatch
@@ -58,7 +56,6 @@ const visibleCount = computed(() => isCompact.value ? 3 : 4)
           :items="designer.designs"
           label="Product design"
           :orientation="orientation"
-          :visible-count="visibleCount"
         >
           <template #default="{ item }">
             <DesignPreview
