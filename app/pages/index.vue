@@ -74,15 +74,10 @@ const visibleCount = computed(() => isCompact.value ? 3 : 4)
           :visible-count="visibleCount"
         >
           <template #default="{ item }">
-            <div class="rounded-[11%/15%] p-0.5 border-2 border-transparent group-data-selected:border-blue-700">
-              <img
-                :src="item.img"
-                :alt="item.name"
-                width="36"
-                height="27"
-                class="block w-9 aspect-4/3 object-cover rounded-[11%/15%] border border-neutral-500"
-              >
-            </div>
+            <DesignPreview
+              :name="item.name"
+              :img="item.img"
+            />
           </template>
         </DesignListbox>
       </div>
