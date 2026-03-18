@@ -1,79 +1,26 @@
-# Your Task
+# Mini-Designer
 
-Check [Task](Task.md) for your task instructions
+A mini t-shirt designer.
 
-# Nuxt Minimal Starter
+## 🦄 Stack
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+- Nuxt 4
+- Vue 3
+- Pinia
+- VueUse
+- Tailwind CSS 4
+- Vitest
+- Playwright
 
-## Setup
-
-Make sure to install dependencies:
+## 📦 Local Setup
 
 ```bash
-# npm
 npm install
-
-# pnpm
-pnpm install
-
-# yarn
-yarn install
-
-# bun
-bun install
-```
-
-## Development Server
-
-Start the development server on `http://localhost:3000`:
-
-```bash
-# npm
 npm run dev
-
-# pnpm
-pnpm dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
 ```
 
-## Production
-
-Build the application for production:
+## 🧪 Tests
 
 ```bash
-# npm
-npm run build
-
-# pnpm
-pnpm build
-
-# yarn
-yarn build
-
-# bun
-bun run build
+npm run test:run
 ```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
