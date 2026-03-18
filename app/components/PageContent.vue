@@ -32,13 +32,16 @@ const classNames = computed(() => ({
   >
     <div class="max-w-7xl mx-auto">
       <div class="flex justify-between items-center">
-        <h1 class="text-3xl font-semibold text-emerald-700">
+        <h1 class="text-xl font-medium text-gray-700">
           {{ title }}
         </h1>
         <div class="flex items-center gap-4">
-          <slot />
+          <slot name="actions" />
         </div>
       </div>
     </div>
   </header>
+  <main class="flex-1">
+    <slot name="default" />
+  </main>
 </template>

@@ -28,7 +28,7 @@ function handleError() {
         {{ message }}
       </p>
       <button
-        class="bg-emerald-500 hover:bg-emerald-600 text-white font-semibold px-8 py-2 rounded-full transition-colors"
+        class="btn-primary"
         @click="handleError"
       >
         Back to home

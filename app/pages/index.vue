@@ -18,21 +18,21 @@ const visibleCount = computed(() => isCompact.value ? 3 : 4)
 </script>
 
 <template>
-  <div>
-    <AppHeader title="Design your Shirt">
-      <div class="fixed sm:static z-100 right-0 bottom-0 left-0 flex items-center justify-between gap-4 h-16 px-4 shadow-[0_-4px_6px_0_rgba(0,0,0,0.05)] sm:shadow-none bg-white sm:bg-transparent">
+  <PageContent title="Design your Shirt">
+    <template #actions>
+      <div class="fixed sm:static z-100 right-0 bottom-0 left-0 flex items-center justify-between gap-4 h-16 sm:h-auto px-4 sm:px-0 shadow-[0_-4px_6px_0_rgba(0,0,0,0.05)] sm:shadow-none bg-white sm:bg-transparent">
         <span class="text-xl font-semibold tabular-nums">{{
           formatCurrency(designer.totalPrice)
         }}</span>
         <NuxtLink
           to="/checkout"
-          class="bg-blue-700 hover:bg-blue-800 active:bg-blue-900 focus-visible:ring-2 focus-visible:ring-blue-300 focus-visible:outline-none text-white font-semibold px-6 py-2 rounded-full transition-colors"
+          class="btn-primary"
         >
           Checkout
         </NuxtLink>
       </div>
-    </AppHeader>
-    <main class="flex-1 flex flex-col sm:flex-row items-center justify-center gap-4 p-4 sm:p-8">
+    </template>
+    <div class="flex flex-col sm:flex-row items-center justify-center gap-4 p-4 sm:p-8">
       <div class="shrink-0 order-2 md:order-1">
         <DesignListbox
           v-if="designer.selectedColor"
@@ -68,6 +68,6 @@ const visibleCount = computed(() => isCompact.value ? 3 : 4)
           </template>
         </DesignListbox>
       </div>
-    </main>
-  </div>
+    </div>
+  </PageContent>
 </template>

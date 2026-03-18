@@ -12,27 +12,25 @@ function designAnother() {
 </script>
 
 <template>
-  <div>
-    <AppHeader title="Order Success">
+  <PageContent title="Order Success">
+    <template #actions>
       <button
-        class="border border-gray-300 bg-white hover:bg-gray-50 active:bg-gray-100 focus-visible:ring-2 focus-visible:ring-gray-300 focus-visible:outline-none text-gray-700 font-semibold px-8 py-2 rounded-full transition-colors"
+        class="btn-secondary"
         @click="designAnother"
       >
         Back
       </button>
-    </AppHeader>
-    <main
-      class="flex-1 flex flex-col items-center justify-center min-h-[60vh] gap-6"
-    >
+    </template>
+    <div class="flex flex-col items-center justify-center min-h-[60vh] gap-6">
       <h2 class="text-3xl md:text-4xl font-light tracking-wide text-gray-500">
         Thank you for your order.
       </h2>
       <button
-        class="bg-blue-700 hover:bg-blue-800 active:bg-blue-900 focus-visible:ring-2 focus-visible:ring-blue-300 focus-visible:outline-none text-white font-semibold px-6 py-2 rounded-full transition-colors"
+        class="btn-primary"
         @click="designAnother"
       >
         Design another product
       </button>
-    </main>
-  </div>
+    </div>
+  </PageContent>
 </template>
