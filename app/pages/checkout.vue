@@ -125,6 +125,7 @@ async function submitOrder() {
               v-if="designer.selectedColor && designer.selectedDesign"
               :color="designer.selectedColor.color"
               :design-img="designer.selectedDesign.img"
+              :design-name="designer.selectedDesign.name"
             />
           </div>
           <div

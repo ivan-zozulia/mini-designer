@@ -4,7 +4,7 @@ import TShirt from '~/components/TShirt.vue'
 
 it('applies the given color', async () => {
   const wrapper = await mountSuspended(TShirt, {
-    props: { color: '#ff0000' },
+    props: { color: '#ff0000', designName: 'Cat' },
   })
 
   expect(wrapper.element.style.color).toBe('#ff0000')
@@ -12,18 +12,19 @@ it('applies the given color', async () => {
 
 it('renders design image when provided', async () => {
   const wrapper = await mountSuspended(TShirt, {
-    props: { color: '#ff0000', designImg: 'https://example.com/cat.png' },
+    props: { color: '#ff0000', designImg: 'https://example.com/cat.png', designName: 'Cat' },
   })
 
-  const img = wrapper.find('[alt="Design"]')
+  const img = wrapper.find('img')
   expect(img.exists()).toBe(true)
   expect(img.attributes('src')).toBe('https://example.com/cat.png')
+  expect(img.attributes('alt')).toBe('Cat')
 })
 
 it('does not render design image when not provided', async () => {
   const wrapper = await mountSuspended(TShirt, {
-    props: { color: '#ff0000' },
+    props: { color: '#ff0000', designName: 'Cat' },
   })
 
-  expect(wrapper.find('[alt="Design"]').exists()).toBe(false)
+  expect(wrapper.find('img').exists()).toBe(false)
 })

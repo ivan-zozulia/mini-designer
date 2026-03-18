@@ -74,6 +74,7 @@ const visibleCount = computed(() => isCompact.value ? 3 : 4)
           v-if="designer.selectedColor && designer.selectedDesign"
           :color="designer.selectedColor.color"
           :design-img="designer.selectedDesign.img"
+          :design-name="designer.selectedDesign.name"
         />
         <div
           class="mt-4 text-sm font-semibold text-center lg:text-left"

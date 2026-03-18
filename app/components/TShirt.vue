@@ -4,6 +4,7 @@ import { shadowColors } from '~/utils/color'
 const props = defineProps<{
   color: string
   designImg?: string
+  designName: string
 }>()
 
 const shadows = computed(() => shadowColors(props.color))
@@ -240,7 +241,7 @@ const shadows = computed(() => shadowColors(props.color))
     <img
       v-if="designImg"
       :src="designImg"
-      alt="Design"
+      :alt="designName"
       width="156"
       height="174"
       class="absolute top-[28%] left-1/2 -translate-x-1/2 w-9/25 aspect-4/3 object-cover rounded-[9%/12%] pointer-events-none"
