@@ -14,18 +14,14 @@ const model = defineModel<string>({ required: true })
   <div>
     <label
       :for="id"
-      class="block text-sm font-semibold mb-1"
+      class="block text-sm leading-6 font-medium text-gray-600"
     >{{ label }}</label>
     <input
       :id="id"
       v-model="model"
       v-bind="$attrs"
-      class="w-full border rounded-lg px-4 py-2 outline-none focus-visible:ring-2 focus-visible:ring-blue-400 transition-colors"
-      :class="
-        errors?.length
-          ? 'border-red-500'
-          : 'border-gray-300'
-      "
+      class="w-full mt-2 rounded-md px-3 py-2 outline-1 outline-gray-300 bg-white focus:outline-2 focus:-outline-offset-2 focus:outline-blue-700  aria-invalid:outline-red-500 aria-invalid:focus:outline-red-500"
+      :aria-invalid="!!errors?.length"
     >
     <div
       v-if="errors?.length"
@@ -34,7 +30,7 @@ const model = defineModel<string>({ required: true })
       <p
         v-for="err in errors"
         :key="err"
-        class="text-red-500 text-xs mt-1"
+        class="text-red-500 text-sm mt-2"
       >
         {{ err }}
       </p>

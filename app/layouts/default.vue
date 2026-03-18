@@ -8,14 +8,14 @@ const isCompact = useMediaQuery('(max-width: 639px)', {
 </script>
 
 <template>
-  <div class="min-h-screen flex flex-col">
+  <div class="min-h-screen flex flex-col bg-gray-50">
     <slot />
     <footer
-      class="mt-auto px-4 py-10"
+      class="mt-auto px-6 py-10"
       :class="{ 'mb-16': route.meta.hasFixedBar && isCompact }"
     >
-      <div class="max-w-7xl mx-auto">
-        <div class="text-sm text-gray-500">
+      <div class="max-w-4xl mx-auto">
+        <div class="text-sm text-gray-500 text-center md:text-left">
           <NuxtLink
             to="/about"
             class="hover:underline"

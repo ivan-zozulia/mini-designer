@@ -32,7 +32,7 @@ const visibleCount = computed(() => isCompact.value ? 3 : 4)
         </NuxtLink>
       </div>
     </template>
-    <div class="flex flex-col sm:flex-row items-center justify-center gap-4 p-4 sm:p-8">
+    <div class="flex flex-col sm:flex-row items-center justify-center gap-4 py-4 sm:py-10 md:py-16 lg:py-20">
       <div class="shrink-0 order-2 md:order-1">
         <DesignListbox
           v-if="designer.selectedColor"
@@ -50,7 +50,7 @@ const visibleCount = computed(() => isCompact.value ? 3 : 4)
           </template>
         </DesignListbox>
       </div>
-      <ProductPreview class="flex-1 max-w-md order-1 sm:order-2" />
+      <ProductPreview class="flex-1 max-w-sm md:max-w-md order-1 sm:order-2" />
       <div class="shrink-0 order-3">
         <DesignListbox
           v-if="designer.selectedDesign"

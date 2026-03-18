@@ -51,45 +51,28 @@ async function submitOrder() {
         Back
       </NuxtLink>
     </template>
-    <div class="md:flex-row gap-8 max-w-6xl mx-auto p-4 md:p-8">
-      <div class="order-2 md:order-first">
-        <ProductPreview class="w-48 mx-auto" />
+    <form
+      class="grid grid-cols-1 md:grid-cols-2 mx-auto max-w-sm md:max-w-none mb-8 md:mt-12"
+      @submit.prevent="submitOrder"
+    >
+      <div class="md:order-1">
+        <ProductPreview class="w-48 mx-auto mt-5 mb-14 md:mt-12" />
+      </div>
+      <div>
         <div>
-          <h2>Order Data</h2>
-          <div>
-            <div class="flex justify-between">
-              <span>Design:</span>
-              <span class="tabular-nums">{{
-                formatCurrency(designer.selectedDesign?.price ?? 0)
-              }}</span>
+          <h2 class="text-lg leading-7 font-medium text-gray-800">
+            Personal Data
+          </h2>
+          <div class="mt-4 grid grid-cols-1 gap-6">
+            <div
+              v-if="checkout.formError"
+              class="p-4 bg-red-50 rounded-md mt-2 border border-red-200"
+              aria-live="polite"
+            >
+              <h3 class="text-red-800 text-sm leading-5 font-medium">
+                {{ checkout.formError }}
+              </h3>
             </div>
-            <div class="flex justify-between">
-              <span>Shirt:</span>
-              <span class="tabular-nums">{{
-                formatCurrency(designer.selectedColor?.price ?? 0)
-              }}</span>
-            </div>
-          </div>
-          <div class="flex justify-between">
-            <span>Total:</span>
-            <span class="tabular-nums">{{
-              formatCurrency(designer.totalPrice)
-            }}</span>
-          </div>
-        </div>
-        <div>
-          <h2>Personal Data</h2>
-          <p
-            v-if="checkout.formError"
-            class="text-red-500 text-sm mb-4"
-            aria-live="polite"
-          >
-            {{ checkout.formError }}
-          </p>
-          <form
-            class="space-y-4"
-            @submit.prevent="submitOrder"
-          >
             <FormInput
               id="order-name"
               v-model="checkout.name"
@@ -97,7 +80,6 @@ async function submitOrder() {
               type="text"
               name="name"
               autocomplete="name"
-              placeholder="Enter your name"
               :errors="checkout.errors.name"
             />
             <FormInput
@@ -107,19 +89,59 @@ async function submitOrder() {
               type="text"
               name="address"
               autocomplete="street-address"
-              placeholder="Enter your address"
               :errors="checkout.errors.address"
             />
-            <button
-              type="submit"
-              :disabled="isSubmitting"
-              class="block w-full btn-primary"
-            >
-              Buy
-            </button>
-          </form>
+          </div>
+        </div>
+        <div class="mt-10">
+          <h2 class="text-lg leading-7 font-medium text-gray-800">
+            Order Data
+          </h2>
+          <div class="mt-4 border border-gray-200 rounded-lg shadow-xs bg-white">
+            <div class="py-6 px-4">
+              <div class="flex justify-between mb-6 text-sm leading-5">
+                <div>
+                  Design
+                </div>
+                <div class="font-medium text-gray-900 tabular-nums">
+                  {{
+                    formatCurrency(designer.selectedDesign?.price ?? 0)
+                  }}
+                </div>
+              </div>
+              <div class="flex justify-between mb-6 text-sm leading-5">
+                <div>
+                  Shirt
+                </div>
+                <div class="font-medium text-gray-900 tabular-nums">
+                  {{
+                    formatCurrency(designer.selectedColor?.price ?? 0)
+                  }}
+                </div>
+              </div>
+              <div class="flex justify-between border-t border-t-gray-200 pt-6 leading-6 font-medium text-gray-900">
+                <div>
+                  Total
+                </div>
+                <div class="tabular-nums">
+                  {{
+                    formatCurrency(designer.totalPrice)
+                  }}
+                </div>
+              </div>
+            </div>
+            <div class="py-6 px-4 border-t border-t-gray-200">
+              <button
+                type="submit"
+                :disabled="isSubmitting"
+                class="block w-full btn-primary py-3 px-4 leading-6"
+              >
+                Buy
+              </button>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
+    </form>
   </PageContent>
 </template>

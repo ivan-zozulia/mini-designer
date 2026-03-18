@@ -28,12 +28,12 @@ describe('Mini Designer', { timeout: 30_000 }, async () => {
 
       await page.getByRole('option').nth(1).click()
       await page.getByRole('link', { name: 'Checkout' }).click()
-      const totalText = await page.getByText('Total:').textContent()
+      const totalText = await page.getByText('Total').textContent()
 
       await page.getByRole('link', { name: 'Back' }).click()
       await page.getByRole('link', { name: 'Checkout' }).click()
 
-      await expect(page.getByText('Total:')).toHaveText(totalText!)
+      await expect(page.getByText('Total')).toHaveText(totalText!)
 
       await page.close()
     })
@@ -45,7 +45,7 @@ describe('Mini Designer', { timeout: 30_000 }, async () => {
       await expect(page).toHaveURL(/\/checkout$/)
 
       await page.getByLabel('Name').fill('Erika')
-      const totalText = await page.getByText('Total:').textContent()
+      const totalText = await page.getByText('Total').textContent()
 
       await page.getByRole('link', { name: 'About this project' }).click()
       await expect(page).toHaveURL(/\/about$/)
@@ -54,7 +54,7 @@ describe('Mini Designer', { timeout: 30_000 }, async () => {
       await expect(page).toHaveURL(/\/checkout$/)
 
       await expect(page.getByLabel('Name')).toHaveValue('Erika')
-      await expect(page.getByText('Total:')).toHaveText(totalText!)
+      await expect(page.getByText('Total')).toHaveText(totalText!)
 
       await page.close()
     })
@@ -133,7 +133,7 @@ describe('Mini Designer', { timeout: 30_000 }, async () => {
 
       await page.getByRole('link', { name: 'Checkout' }).click()
       await expect(page).toHaveURL(/\/checkout$/)
-      await expect(page.getByText('Total:')).toBeVisible()
+      await expect(page.getByText('Total')).toBeVisible()
 
       await page.getByLabel('Name').fill('Lea Mustermann')
       await page.getByLabel('Address').fill('Goethestraße 10')

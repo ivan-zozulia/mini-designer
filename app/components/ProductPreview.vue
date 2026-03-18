@@ -11,10 +11,16 @@ const designer = useDesignerStore()
       :design-name="designer.selectedDesign.name"
     />
     <div
-      class="flex flex-col items-center"
+      class="flex flex-col gap-1 items-center text-gray-900 mt-4"
     >
-      <span>Shirt: {{ designer.selectedColor?.name }}</span>
-      <span>Design: {{ designer.selectedDesign?.name }}</span>
+      <div class="inline-flex gap-1">
+        <span class="font-medium">Shirt:</span>
+        <span>{{ designer.selectedColor?.name }}</span>
+      </div>
+      <div class="inline-flex gap-1">
+        <span class="font-medium">Design:</span>
+        <span>{{ designer.selectedDesign?.name }}</span>
+      </div>
     </div>
   </div>
 </template>
