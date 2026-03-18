@@ -60,31 +60,86 @@ describe('Vertical Listbox', () => {
     { name: 'E' },
     { name: 'F' },
   ]
+  const visibleCount = 4
   let wrapper: VueWrapper
   let listbox: DOMWrapper<Element>
   let options: DOMWrapper<Element>[]
+  let prev: DOMWrapper<Element>
+  let next: DOMWrapper<Element>
 
   beforeEach(async () => {
-    wrapper = await mountSuspended(createListbox(items))
+    wrapper = await mountSuspended(createListbox(items, { visibleCount }))
     listbox = wrapper.find('[role=listbox]')
     options = wrapper.findAll('[role=option]')
+    next = wrapper.find('[data-testid="select-next"]')
+    prev = wrapper.find('[data-testid="select-prev"]')
     await listbox.trigger('focus')
+  })
+
+  it('should disable prev at start', async () => {
+    expect(prev.attributes('disabled')).toBeDefined()
+  })
+
+  it('should enable prev after scrolling forward', async () => {
+    for (let i = 0; i < visibleCount; i++) {
+      await next.trigger('click')
+    }
+    expect(prev.attributes('disabled')).toBeUndefined()
+  })
+
+  it('should select previous item when prev is clicked', async () => {
+    for (let i = 0; i < visibleCount; i++) {
+      await next.trigger('click')
+    }
+    expect(prev.attributes('disabled')).toBeUndefined()
+    await prev.trigger('click')
+    expect(options[3]?.attributes('data-selected')).toBeDefined()
+  })
+
+  it('should select next item when next is clicked', async () => {
+    await next.trigger('click')
+    expect(options[1]?.attributes('data-selected')).toBeDefined()
+  })
+
+  it('should disable next when offset is at end', async () => {
+    for (let i = 0; i < items.length - 1; i++) {
+      await next.trigger('click')
+    }
+    expect(next.attributes('disabled')).toBeDefined()
+  })
+
+  it('should enable next after scrolling back', async () => {
+    for (let i = 0; i < items.length - 1; i++) {
+      await next.trigger('click')
+    }
+    expect(next.attributes('disabled')).toBeDefined()
+    for (let i = 0; i < visibleCount; i++) {
+      await prev.trigger('click')
+    }
+    expect(next.attributes('disabled')).toBeUndefined()
   })
 
   it('should select item when clicked', async () => {
     await options[2]?.trigger('click')
-    expect(wrapper.findAll('[role=option]')[2]?.attributes('data-selected')).toBeDefined()
+    expect(options[2]?.attributes('data-selected')).toBeDefined()
   })
 
   it('should select on arrow key', async () => {
     await listbox.trigger('keydown', { key: 'ArrowDown' })
-    expect(wrapper.findAll('[role=option]')[1]?.attributes('data-selected')).toBeDefined()
+    expect(options[1]?.attributes('data-selected')).toBeDefined()
   })
 })
 
 describe('Horizontal Listbox', () => {
   it('should navigate with right and left arrows', async () => {
-    const items = [{ name: 'A' }, { name: 'B' }, { name: 'C' }, { name: 'D' }, { name: 'E' }, { name: 'F' }]
+    const items = [
+      { name: 'A' },
+      { name: 'B' },
+      { name: 'C' },
+      { name: 'D' },
+      { name: 'E' },
+      { name: 'F' },
+    ]
     const wrapper = await mountSuspended(createListbox(items, { orientation: 'horizontal' }))
     const listbox = wrapper.find('[role=listbox]')
     await listbox.trigger('focus')
