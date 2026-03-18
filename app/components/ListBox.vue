@@ -1,4 +1,4 @@
-<script setup lang="ts" generic="T extends { name: string }">
+<script setup lang="ts" generic="T">
 const { items, orientation = 'vertical', visibleCount = 4, label } = defineProps<{
   items: T[]
   orientation?: 'vertical' | 'horizontal'
@@ -84,7 +84,7 @@ function onKeydown(e: KeyboardEvent) {
       role="listbox"
       :aria-label="label"
       tabindex="0"
-      class="flex gap-3 outline-none"
+      class="flex outline-none"
       :class="orientation === 'horizontal' ? 'flex-row' : 'flex-col'"
       @keydown="onKeydown"
       @focus="isKeyboardNav = ($event.target as HTMLElement).matches(':focus-visible') ?? false"
@@ -94,9 +94,8 @@ function onKeydown(e: KeyboardEvent) {
         v-for="(item, i) in visibleItems"
         :key="offset + i"
         role="option"
-        :aria-label="item.name"
-        :aria-selected="offset + i === selected"
         class="group"
+        :aria-selected="offset + i === selected"
         :data-selected="offset + i === selected ? '' : undefined"
         :data-highlighted="offset + i === selected && isKeyboardNav ? '' : undefined"
         @pointerdown="isKeyboardNav = false"

@@ -43,9 +43,29 @@ const visibleCount = computed(() => isCompact.value ? 3 : 4)
         >
           <template #default="{ item }">
             <div
-              class="size-12 rounded-full cursor-pointer border-2 border-transparent group-data-selected:border-emerald-400 group-data-highlighted:ring-2 group-data-highlighted:ring-emerald-300"
-              :style="{ backgroundColor: item.color }"
-            />
+              class="size-12 flex items-center justify-center rounded-lg cursor-pointer group-data-highlighted:ring-2"
+            >
+              <svg
+                viewBox="0 0 36 36"
+                class="size-9"
+                :aria-label="item.name"
+              >
+                <g transform="translate(18 18)">
+                  <circle
+                    r="12"
+                    :fill="item.color"
+                    class="stroke-neutral-500"
+                    stroke-width="1"
+                  />
+                  <circle
+                    r="16"
+                    fill="none"
+                    class="group-data-selected:stroke-blue-700"
+                    stroke-width="2"
+                  />
+                </g>
+              </svg>
+            </div>
           </template>
         </ListBox>
       </div>
@@ -71,13 +91,17 @@ const visibleCount = computed(() => isCompact.value ? 3 : 4)
           :visible-count="visibleCount"
         >
           <template #default="{ item }">
-            <img
-              :src="item.img"
-              :alt="item.name"
-              width="48"
-              height="48"
-              class="size-12 object-cover rounded cursor-pointer border-2 border-transparent group-data-selected:border-emerald-400 group-data-highlighted:ring-2 group-data-highlighted:ring-emerald-300"
-            >
+            <div class="size-12 flex items-center justify-center rounded-lg cursor-pointer group-data-highlighted:ring-2">
+              <div class="rounded-[11%/15%] p-0.5 border-2 border-transparent group-data-selected:border-blue-700">
+                <img
+                  :src="item.img"
+                  :alt="item.name"
+                  width="36"
+                  height="27"
+                  class="block w-9 aspect-4/3 object-cover rounded-[11%/15%] border border-neutral-500"
+                >
+              </div>
+            </div>
           </template>
         </ListBox>
       </div>
