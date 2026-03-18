@@ -1,5 +1,7 @@
 # Mini-Designer
 
+[![ci](https://github.com/ivan-zozulia/mini-designer/actions/workflows/ci.yml/badge.svg)](https://github.com/ivan-zozulia/mini-designer/actions/workflows/ci.yml)
+
 A mini t-shirt designer.
 
 ## 🦄 Stack
