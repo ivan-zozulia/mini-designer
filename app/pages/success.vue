@@ -21,12 +21,12 @@ function designAnother() {
         Back
       </button>
     </template>
-    <div class="flex flex-col items-center justify-center min-h-[60vh] gap-6">
+    <div class="flex flex-col items-center justify-center min-h-[60vh] gap-8">
       <h2 class="text-3xl md:text-4xl font-light tracking-wide text-gray-500">
         Thank you for your order.
       </h2>
       <button
-        class="btn-primary"
+        class="btn-primary py-3 px-10 leading-6"
         @click="designAnother"
       >
         Design another product

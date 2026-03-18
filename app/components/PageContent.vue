@@ -32,7 +32,7 @@ const classNames = computed(() => ({
   >
     <div class="max-w-4xl mx-auto">
       <div class="flex justify-between items-center">
-        <h1 class="font-medium text-gray-900">
+        <h1 class="font-medium leading-10.5 text-gray-900">
           {{ title }}
         </h1>
         <div class="flex items-center gap-4">

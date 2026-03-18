@@ -12,7 +12,7 @@ const isCompact = useMediaQuery('(max-width: 639px)', {
     <slot />
     <footer
       class="mt-auto px-6 py-10"
-      :class="{ 'mb-16': route.meta.hasFixedBar && isCompact }"
+      :class="{ 'mb-18': route.meta.hasFixedBar && isCompact }"
     >
       <div class="max-w-4xl mx-auto">
         <div class="text-sm text-gray-500 text-center md:text-left">

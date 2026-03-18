@@ -19,7 +19,7 @@ const orientation = computed(() => isCompact.value ? 'horizontal' : 'vertical')
 <template>
   <PageContent title="Design your Shirt">
     <template #actions>
-      <div class="fixed sm:static z-100 right-0 bottom-0 left-0 flex items-center justify-between gap-4 h-16 sm:h-auto px-4 sm:px-0 shadow-[0_-4px_6px_0_rgba(0,0,0,0.05)] sm:shadow-none bg-white sm:bg-transparent">
+      <div class="fixed sm:static z-100 right-0 bottom-0 left-0 flex items-center justify-between gap-4 h-18 sm:h-auto px-4 sm:px-0 shadow-[0_-4px_6px_0_rgba(0,0,0,0.05)] sm:shadow-none bg-white sm:bg-transparent">
         <span class="text-xl font-semibold tabular-nums">{{
           formatCurrency(designer.totalPrice)
         }}</span>
