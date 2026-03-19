@@ -14,7 +14,7 @@ const model = defineModel<string>({ required: true })
   <div>
     <label
       :for="id"
-      class="block text-sm leading-6 font-medium text-gray-600"
+      class="block text-sm leading-6 font-medium text-gray-600 after:content-['*'] after:ml-1 after:text-red-500"
     >{{ label }}</label>
     <input
       :id="id"
