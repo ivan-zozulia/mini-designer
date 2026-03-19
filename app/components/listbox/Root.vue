@@ -1,11 +1,9 @@
 <script setup lang="ts" generic="T">
 const {
-  orientation = 'vertical',
   visibleCount = 4,
   label,
   by,
 } = defineProps<{
-  orientation?: 'vertical' | 'horizontal'
   visibleCount?: number
   label: string
   by?: (string & keyof T) | ((a: T, b: T) => boolean)
@@ -95,7 +93,6 @@ function clearKeyboardNav() {
 
 provideListboxContext({
   label: computed(() => label),
-  orientation: computed(() => orientation),
   isKeyboardNav,
   canSelectPrev,
   canSelectNext,
@@ -113,8 +110,7 @@ provideListboxContext({
 
 <template>
   <div
-    class="flex"
-    :class="orientation === 'horizontal' ? 'flex-row' : 'flex-col'"
+    class="flex flex-row sm:flex-col"
   >
     <slot />
   </div>

@@ -1,19 +1,11 @@
 <script setup lang="ts">
-import { useMediaQuery } from '@vueuse/core'
-
 useSeoMeta({ title: 'Design your Shirt', description: 'Design Unix Classic Tee for yourself' })
 
 const designer = useDesignerStore()
 
-const isCompact = useMediaQuery('(max-width: 639px)', {
-  ssrWidth: 639,
-})
-
 definePageMeta({
   hasFixedBar: true,
 })
-
-const orientation = computed(() => isCompact.value ? 'horizontal' : 'vertical')
 </script>
 
 <template>
@@ -38,7 +30,6 @@ const orientation = computed(() => isCompact.value ? 'horizontal' : 'vertical')
           v-model="designer.selectedColor"
           :items="designer.colors"
           label="Product color"
-          :orientation="orientation"
         >
           <template #default="{ item }">
             <ColorSwatch
@@ -55,7 +46,6 @@ const orientation = computed(() => isCompact.value ? 'horizontal' : 'vertical')
           v-model="designer.selectedDesign"
           :items="designer.designs"
           label="Product design"
-          :orientation="orientation"
         >
           <template #default="{ item }">
             <DesignPreview

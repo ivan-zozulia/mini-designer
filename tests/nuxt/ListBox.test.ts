@@ -124,26 +124,17 @@ describe('Vertical Listbox', () => {
     expect(options[2]?.attributes('data-selected')).toBeDefined()
   })
 
-  it('should select on arrow key', async () => {
+  it('should select items with arrow keys', async () => {
     await listbox.trigger('keydown', { key: 'ArrowDown' })
     expect(options[1]?.attributes('data-selected')).toBeDefined()
-  })
-})
 
-describe('Horizontal Listbox', () => {
-  it('should navigate with right and left arrows', async () => {
-    const items = [
-      { name: 'A' },
-      { name: 'B' },
-      { name: 'C' },
-      { name: 'D' },
-      { name: 'E' },
-      { name: 'F' },
-    ]
-    const wrapper = await mountSuspended(createListbox(items, { orientation: 'horizontal' }))
-    const listbox = wrapper.find('[role=listbox]')
-    await listbox.trigger('focus')
     await listbox.trigger('keydown', { key: 'ArrowRight' })
-    expect(wrapper.findAll('[role=option]')[1]?.attributes('data-selected')).toBeDefined()
+    expect(options[2]?.attributes('data-selected')).toBeDefined()
+
+    await listbox.trigger('keydown', { key: 'ArrowUp' })
+    expect(options[1]?.attributes('data-selected')).toBeDefined()
+
+    await listbox.trigger('keydown', { key: 'ArrowLeft' })
+    expect(options[0]?.attributes('data-selected')).toBeDefined()
   })
 })

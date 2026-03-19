@@ -1,8 +1,7 @@
 <script setup lang="ts" generic="T">
-const { items, label, orientation = 'vertical', visibleCount = 4 } = defineProps<{
+const { items, label, visibleCount = 4 } = defineProps<{
   items: T[]
   label: string
-  orientation?: 'vertical' | 'horizontal'
   visibleCount?: number
 }>()
 
@@ -17,15 +16,11 @@ const modelValue = defineModel<T>({ required: true })
   <ListboxRoot
     v-model="modelValue"
     :label="label"
-    :orientation="orientation"
     :visible-count="visibleCount"
     class="items-center"
   >
     <ListboxPrev class="size-12 flex items-center justify-center cursor-pointer text-gray-700 disabled:text-gray-300 disabled:cursor-default">
-      <IconChevron
-        class="size-4"
-        :class="orientation === 'horizontal' ? '-rotate-90' : ''"
-      />
+      <IconChevron class="size-4 -rotate-90 sm:rotate-0" />
     </ListboxPrev>
     <ListboxContent>
       <ListboxItem
@@ -38,10 +33,7 @@ const modelValue = defineModel<T>({ required: true })
       </ListboxItem>
     </ListboxContent>
     <ListboxNext class="size-12 flex items-center justify-center cursor-pointer text-gray-700 disabled:text-gray-300 disabled:cursor-default">
-      <IconChevron
-        class="size-4"
-        :class="orientation === 'horizontal' ? '-rotate-270' : '-rotate-180'"
-      />
+      <IconChevron class="size-4 -rotate-270 sm:-rotate-180" />
     </ListboxNext>
   </ListboxRoot>
 </template>

@@ -2,7 +2,6 @@ import type { ComputedRef, Ref } from 'vue'
 
 export interface ListboxContext {
   label: ComputedRef<string>
-  orientation: ComputedRef<'vertical' | 'horizontal'>
   isKeyboardNav: Ref<boolean>
   canSelectPrev: ComputedRef<boolean>
   canSelectNext: ComputedRef<boolean>

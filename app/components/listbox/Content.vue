@@ -2,14 +2,12 @@
 const ctx = useListboxContext()
 
 function onKeyDown(e: KeyboardEvent) {
-  const nextKey = ctx.orientation.value === 'horizontal' ? 'ArrowRight' : 'ArrowDown'
-  const prevKey = ctx.orientation.value === 'horizontal' ? 'ArrowLeft' : 'ArrowUp'
-  if (e.key === nextKey) {
+  if (e.key === 'ArrowDown' || e.key === 'ArrowRight') {
     e.preventDefault()
     ctx.isKeyboardNav.value = true
     ctx.selectNext()
   }
-  else if (e.key === prevKey) {
+  else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
     e.preventDefault()
     ctx.isKeyboardNav.value = true
     ctx.selectPrev()
@@ -30,8 +28,7 @@ function onBlur() {
     role="listbox"
     :aria-label="ctx.label.value"
     tabindex="0"
-    class="flex outline-none"
-    :class="ctx.orientation.value === 'horizontal' ? 'flex-row' : 'flex-col'"
+    class="flex outline-none flex-row sm:flex-col"
     @keydown="onKeyDown"
     @focus="onFocus"
     @blur="onBlur"
