@@ -91,6 +91,13 @@ function clearKeyboardNav() {
   isKeyboardNav.value = false
 }
 
+onMounted(() => {
+  const idx = indexOf(modelValue.value)
+  if (idx > 0) {
+    ensureVisible(idx)
+  }
+})
+
 provideListboxContext({
   label: computed(() => label),
   isKeyboardNav,
