@@ -84,7 +84,7 @@ function isSelected(value: unknown) {
 }
 
 function isHighlighted(value: unknown) {
-  return isEqual(modelValue.value, value) && isKeyboardNav.value
+  return isSelected(value) && isKeyboardNav.value
 }
 
 function clearKeyboardNav() {
