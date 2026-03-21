@@ -4,10 +4,10 @@ import TShirt from '~/components/TShirt.vue'
 
 it('applies the given color', async () => {
   const wrapper = await mountSuspended(TShirt, {
-    props: { color: '#ff0000', designName: 'Cat' },
+    props: { color: '#FF0000', designName: 'Cat' },
   })
 
-  expect(wrapper.element.style.color).toBe('#ff0000')
+  expect(wrapper.element.style.getPropertyValue('--base-color')).toBe('#FF0000')
 })
 
 it('renders design image when provided', async () => {
